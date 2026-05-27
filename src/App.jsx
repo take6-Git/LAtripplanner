@@ -1842,18 +1842,22 @@ const REAL_IMAGES_BY_SCENE = {
   pier:        'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
   hollywood:   'https://images.unsplash.com/photo-1515553633540-e0dd6024463e?w=1200&q=70&auto=format&fit=crop',
   observatory: 'https://images.unsplash.com/photo-1566864717473-2f0daf8979e5?w=1200&q=70&auto=format&fit=crop',
-  skyline:     'https://images.unsplash.com/photo-1518540329668-417feba873ef?w=1200&q=70&auto=format&fit=crop',  // DTLA道路
-  historic:    'https://images.unsplash.com/photo-1620135791944-e05e9f8f2f2a?w=1200&q=70&auto=format&fit=crop',  // DTLA昼
-  night_city:  'https://images.unsplash.com/photo-1631473121056-34bbec0dfb3b?w=1200&q=70&auto=format&fit=crop',  // DTLA夜景
-  shopping:    'https://images.unsplash.com/photo-1567898948655-acbf0ebe1606?w=1200&q=70&auto=format&fit=crop',  // ヤシ並木
-  beach:       'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',  // ピア
-  mountain:    'https://images.unsplash.com/photo-1649080832349-06b15253c27c?w=1200&q=70&auto=format&fit=crop',  // 山と街
-  art:         'https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=1200&q=70&auto=format&fit=crop',  // dusk aerial
-  little_tokyo:'https://images.unsplash.com/photo-1609320518571-cbde7ea56184?w=1200&q=70&auto=format&fit=crop',  // street city
+  skyline:     'https://images.unsplash.com/photo-1518540329668-417feba873ef?w=1200&q=70&auto=format&fit=crop',
+  historic:    'https://images.unsplash.com/photo-1620135791944-e05e9f8f2f2a?w=1200&q=70&auto=format&fit=crop',
+  night_city:  'https://images.unsplash.com/photo-1631473121056-34bbec0dfb3b?w=1200&q=70&auto=format&fit=crop',
+  shopping:    'https://images.unsplash.com/photo-1567898948655-acbf0ebe1606?w=1200&q=70&auto=format&fit=crop',
+  beach:       'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
+  mountain:    'https://images.unsplash.com/photo-1649080832349-06b15253c27c?w=1200&q=70&auto=format&fit=crop',
+  art:         'https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=1200&q=70&auto=format&fit=crop',
+  little_tokyo:'https://images.unsplash.com/photo-1609320518571-cbde7ea56184?w=1200&q=70&auto=format&fit=crop',
+  // 食事系
+  food_dinner: 'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',  // テーブル料理（高級ディナー雰囲気）
+  food_sushi:  'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&q=70&auto=format&fit=crop',  // 寿司
 };
 
 // 特定スポット名 → 実画像URL（sceneより優先）
 const REAL_IMAGES_BY_NAME = {
+  // エリア・観光
   'Santa Monica Pier':                  'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
   'Santa Monica Pier の夕陽':           'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
   'Walk of Fame 散策':                  'https://images.unsplash.com/photo-1515553633540-e0dd6024463e?w=1200&q=70&auto=format&fit=crop',
@@ -1864,6 +1868,14 @@ const REAL_IMAGES_BY_NAME = {
   'Bradbury Building':                  'https://images.unsplash.com/photo-1620135791944-e05e9f8f2f2a?w=1200&q=70&auto=format&fit=crop',
   'Walt Disney Concert Hall':           'https://images.unsplash.com/photo-1601783210890-d921f8d008b3?w=1200&q=70&auto=format&fit=crop',
   'Rodeo Drive':                        'https://images.unsplash.com/photo-1567898948655-acbf0ebe1606?w=1200&q=70&auto=format&fit=crop',
+  // 食事系（個別マッピング）
+  'Daikokuya Ramen':                    'https://images.unsplash.com/photo-1591325418441-ff678baf78ef?w=1200&q=70&auto=format&fit=crop',  // ラーメン
+  'Sushi Gen':                          'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&q=70&auto=format&fit=crop',  // 寿司
+  'Bestia':                             'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',  // ディナー
+  'Bavel':                              'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  "Park's BBQ":                         'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  'Republique（夜）':                    'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  'Night + Market Song':                'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
 };
 
 // エリアごとの大きい実画像（AreaCard展開用）
