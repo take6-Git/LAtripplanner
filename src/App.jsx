@@ -41,6 +41,7 @@ const HOME_BASE = {
   nameEn: 'Pala on Broadway',
   address: '460 S Broadway, Los Angeles',
   area: 'Downtown LA',
+  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pala+on+Broadway+460+S+Broadway+Los+Angeles',
 };
 
 // ============ 興味カテゴリー（11種） ============
@@ -1565,6 +1566,107 @@ function hostOf(url) {
   }
 }
 
+// ============ スポット名カタカナ読み ============
+const READINGS = {
+  // 朝食
+  'Grand Central Market':       'グランド・セントラル・マーケット',
+  'Sqirl':                      'スクワール',
+  'Republique':                 'レピュブリック',
+  'Bottega Louie':              'ボッテガ・ルイ',
+  'Cofax Coffee':               'コーファックス・コーヒー',
+  // ランチ
+  "Howlin' Ray's":              'ハウリン・レイズ',
+  'Philippe the Original':      'フィリペ・ジ・オリジナル',
+  'Sushi Gen':                  'スシ・ゲン',
+  'Mendocino Farms':            'メンドシーノ・ファームズ',
+  'In-N-Out Burger':            'イン・アンド・アウト・バーガー',
+  'Guisados':                   'ギサドス',
+  // ディナー
+  'Bestia':                     'ベスティア',
+  'Bavel':                      'ベイヴェル',
+  "Park's BBQ":                 'パークス・バーベキュー',
+  'Republique（夜）':            'レピュブリック',
+  'Daikokuya Ramen':            'ダイコクヤ・ラーメン',
+  'Night + Market Song':        'ナイト・プラス・マーケット・ソング',
+  // アート
+  'The Broad':                  'ザ・ブロード',
+  'MOCA Grand Avenue':          'モカ・グランド・アベニュー',
+  'Hauser & Wirth':             'ハウザー・アンド・ワース',
+  'LACMA':                      'ラクマ',
+  'Urban Light @ LACMA':        'アーバン・ライト（ラクマ）',
+  'Getty Center':               'ゲッティ・センター',
+  'Academy Museum':             'アカデミー・ミュージアム',
+  // 自然
+  'Echo Park Lake':             'エコー・パーク・レイク',
+  'Huntington Library':         'ハンティントン・ライブラリー',
+  'Griffith Observatory':       'グリフィス・オブザーバトリー',
+  'Griffith Observatory 夜景':  'グリフィス・オブザーバトリー',
+  'Griffith Observatory（La La Land）': 'グリフィス・オブザーバトリー',
+  'Runyon Canyon ハイキング':    'ランヨン・キャニオン',
+  // ビーチ
+  'Santa Monica Pier':          'サンタモニカ・ピア',
+  'Santa Monica Pier の夕陽':   'サンタモニカ・ピア',
+  'Manhattan Beach':            'マンハッタン・ビーチ',
+  'Manhattan Beach サーフィン体験': 'マンハッタン・ビーチ',
+  'El Matador State Beach':     'エル・マタドール・ステート・ビーチ',
+  'Venice Beach 朝活':           'ベニス・ビーチ',
+  'Venice Canals 散歩':          'ベニス・カナル',
+  // 歴史・建築
+  'Bradbury Building':          'ブラッドベリー・ビルディング',
+  'Olvera Street':              'オルベラ・ストリート',
+  'Walt Disney Concert Hall':   'ウォルト・ディズニー・コンサートホール',
+  'Union Station':              'ユニオン・ステーション',
+  // 映画
+  'TCL Chinese Theatre':        'ティー・シー・エル・チャイニーズ・シアター',
+  'Warner Bros. Studio Tour':   'ワーナー・ブラザース・スタジオツアー',
+  'Walk of Fame 散策':           'ウォーク・オブ・フェイム',
+  // ショッピング
+  'The Grove':                  'ザ・グローブ',
+  'Rodeo Drive':                'ロデオ・ドライブ',
+  'Melrose Avenue':             'メルローズ・アベニュー',
+  'Abbot Kinney Blvd':          'アボット・キニー・ブールバード',
+  // テーマパーク
+  'Universal Studios Hollywood':'ユニバーサル・スタジオ・ハリウッド',
+  'Disneyland Park':            'ディズニーランド・パーク',
+  'Six Flags Magic Mountain':   'シックス・フラッグス・マジック・マウンテン',
+  // 映え/写真
+  'Angels Flight':              'エンジェルズ・フライト',
+  'The Last Bookstore':         'ザ・ラスト・ブックストア',
+  'Vista Theater':              'ビスタ・シアター',
+  'Pink Wall（Paul Smith）':     'ピンク・ウォール',
+  'Salt & Straw Venice':        'ソルト・アンド・ストロー',
+  'Venice Wall Murals':         'ベニス・ウォール・ミュラル',
+  // スポーツ
+  'Dodger Stadium ツアー':       'ドジャー・スタジアム',
+  'Dodgers Game 観戦':           'ドジャース',
+  'Crypto.com Arena 見学':       'クリプト・ドット・コム・アリーナ',
+  'Rose Bowl Stadium':          'ローズ・ボウル・スタジアム',
+  'SoFi Stadium ツアー':         'ソーファイ・スタジアム',
+  // 体験
+  'Wi Spa Korean Sauna':         'ワイ・スパ',
+  'Helicopter LA Tour':          'ヘリコプター・エルエー・ツアー',
+  'E-Bike Tour（DTLA）':         'イー・バイク・ツアー',
+  'Old Town Music Hall':         'オールド・タウン・ミュージック・ホール',
+  'Speakeasy バー巡り':          'スピークイージー',
+  // 夜
+  'OUE Skyspace（DTLA夜景）':    'オーユーイー・スカイスペース',
+  'Hollywood Bowl コンサート':   'ハリウッド・ボウル',
+  'Sunset Strip でドリンク':     'サンセット・ストリップ',
+  // イベント名で出てくるもの
+  'Hollywood Bowl':              'ハリウッド・ボウル',
+  'Dodger Stadium':              'ドジャー・スタジアム',
+};
+
+function readingOf(name) {
+  if (!name) return null;
+  // 完全一致
+  if (READINGS[name]) return READINGS[name];
+  // 全角カッコを半角に変換してマッチ
+  const normalized = name.replace(/（/g, '(').replace(/）/g, ')');
+  if (READINGS[normalized]) return READINGS[normalized];
+  return null;
+}
+
 // ============ フォント ============
 const FONT_MINCHO = '"Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Noto Serif JP", "Times New Roman", serif';
 const FONT_SERIF_EN = 'Georgia, "Times New Roman", "Yu Mincho", serif';
@@ -1734,14 +1836,46 @@ function getImageQuery(item) {
   return CATEGORY_QUERIES[item.cat] || 'los+angeles';
 }
 
+// ============ 実画像マッピング（Unsplash CDN直リンク） ============
+// scene種別 → 実画像URL
+const REAL_IMAGES_BY_SCENE = {
+  pier:        'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
+  hollywood:   'https://images.unsplash.com/photo-1515553633540-e0dd6024463e?w=1200&q=70&auto=format&fit=crop',
+  observatory: 'https://images.unsplash.com/photo-1566864717473-2f0daf8979e5?w=1200&q=70&auto=format&fit=crop',
+};
+
+// 特定スポット名 → 実画像URL（sceneより優先）
+const REAL_IMAGES_BY_NAME = {
+  'Santa Monica Pier':                  'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
+  'Santa Monica Pier の夕陽':           'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
+  'Walk of Fame 散策':                  'https://images.unsplash.com/photo-1515553633540-e0dd6024463e?w=1200&q=70&auto=format&fit=crop',
+  'Griffith Observatory':               'https://images.unsplash.com/photo-1566864717473-2f0daf8979e5?w=1200&q=70&auto=format&fit=crop',
+  'Griffith Observatory 夜景':           'https://images.unsplash.com/photo-1639164507206-91fe76f7cf7c?w=1200&q=70&auto=format&fit=crop',
+  'Griffith Observatory（La La Land）': 'https://images.unsplash.com/photo-1572975165658-8fba2f1b0b37?w=1200&q=70&auto=format&fit=crop',
+};
+
+// エリアごとの大きい実画像（AreaCard展開用）
+const REAL_IMAGES_BY_AREA = {
+  'Santa Monica': 'https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1200&q=70&auto=format&fit=crop',
+  'Hollywood':    'https://images.unsplash.com/photo-1515553633540-e0dd6024463e?w=1200&q=70&auto=format&fit=crop',
+  'Griffith':     'https://images.unsplash.com/photo-1566864717473-2f0daf8979e5?w=1200&q=70&auto=format&fit=crop',
+};
+
+function getRealImage(item) {
+  if (!item) return null;
+  if (item.name && REAL_IMAGES_BY_NAME[item.name]) return REAL_IMAGES_BY_NAME[item.name];
+  if (item.venue && REAL_IMAGES_BY_NAME[item.venue]) return REAL_IMAGES_BY_NAME[item.venue];
+  if (item.scene && REAL_IMAGES_BY_SCENE[item.scene]) return REAL_IMAGES_BY_SCENE[item.scene];
+  if (item.en && REAL_IMAGES_BY_AREA[item.en]) return REAL_IMAGES_BY_AREA[item.en];
+  return null;
+}
+
 // ============ 画像 or SVG（フォールバック付き） ============
-// 外部画像URLが読み込めない/読み込み中はSVGを背面に表示し、
-// 読み込み完了したら実写写真がフェードインで上に重なる。
-function PhotoOrScene({ scene, imageQuery, w = 160, h = 160, rounded = 0, imgSize = '600x400' }) {
+// realUrl が指定されていれば実画像を試し、失敗時はSVGに落ちる
+function PhotoOrScene({ scene, realUrl, w = 160, h = 160, rounded = 0 }) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const url = imageQuery ? `https://source.unsplash.com/${imgSize}/?${imageQuery}` : null;
-  const showImg = url && !failed;
+  const showImg = realUrl && !failed;
 
   return (
     <div
@@ -1760,10 +1894,9 @@ function PhotoOrScene({ scene, imageQuery, w = 160, h = 160, rounded = 0, imgSiz
       </div>
       {showImg && (
         <img
-          src={url}
+          src={realUrl}
           alt=""
           loading="lazy"
-          referrerPolicy="no-referrer"
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           style={{
@@ -1866,7 +1999,7 @@ function ArticleCard({ idx, slot }) {
       </div>
 
       <div className="mb-4">
-        <PhotoOrScene scene={act.scene} imageQuery={getImageQuery(act)} w="100%" h={200} imgSize="800x400" />
+        <PhotoOrScene scene={act.scene} realUrl={getRealImage(act)} w="100%" h={200} />
       </div>
 
       <div className="flex items-center gap-2 mb-2 flex-wrap">
@@ -1886,6 +2019,11 @@ function ArticleCard({ idx, slot }) {
           </span>
         )}
       </h3>
+      {readingOf(act.name) && (
+        <div className="-mt-1.5 mb-2 text-[11px]" style={{ color: C.ink3, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+          {readingOf(act.name)}
+        </div>
+      )}
 
       <p className="text-[12.5px] leading-[1.85]" style={{ color: C.ink2 }}>
         {act.desc}
@@ -1924,7 +2062,7 @@ function EventArticle({ ev, idx }) {
         </span>
       </div>
       <div className="mb-4">
-        <PhotoOrScene scene={ev.scene} imageQuery={getImageQuery(ev)} w="100%" h={180} imgSize="800x360" />
+        <PhotoOrScene scene={ev.scene} realUrl={getRealImage(ev)} w="100%" h={180} />
       </div>
       <div className="text-[10.5px] tracking-[0.2em] mb-1" style={{ color: C.ink3, fontFamily: FONT_SANS }}>
         {ev.time}
@@ -1934,6 +2072,11 @@ function EventArticle({ ev, idx }) {
       </h3>
       <div className="text-[11.5px]" style={{ color: C.ink2, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
         会場：{ev.venue}
+        {readingOf(ev.venue) && (
+          <span className="ml-1.5 text-[10px]" style={{ color: C.ink3 }}>
+            （{readingOf(ev.venue)}）
+          </span>
+        )}
       </div>
       <div className="mt-3 inline-block px-2 py-0.5 text-[10px] font-bold" style={{ background: C.paper, color: C.ink2, border: `1px solid ${C.line}`, letterSpacing: '0.08em' }}>
         {ev.ticketsLeft}
@@ -1958,7 +2101,7 @@ function SpotArticle({ act, idx }) {
         </span>
       </div>
       <div className="flex gap-4">
-        <PhotoOrScene scene={act.scene} imageQuery={getImageQuery(act)} w={130} h={130} imgSize="300x300" />
+        <PhotoOrScene scene={act.scene} realUrl={getRealImage(act)} w={130} h={130} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 mb-2 flex-wrap">
             <DayBadge badge={act.dayBadge} />
@@ -1966,6 +2109,11 @@ function SpotArticle({ act, idx }) {
           <h3 className="text-[16px] leading-tight mb-1.5" style={{ fontFamily: FONT_MINCHO, color: C.ink, fontWeight: 500, letterSpacing: '0.03em' }}>
             {act.name}
           </h3>
+          {readingOf(act.name) && (
+            <div className="-mt-1 mb-1.5 text-[10.5px]" style={{ color: C.ink3, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+              {readingOf(act.name)}
+            </div>
+          )}
           <p className="text-[11px] leading-[1.7] line-clamp-3" style={{ color: C.ink2 }}>
             {act.desc}
           </p>
@@ -2043,10 +2191,8 @@ function AreaCard({ area, idx, isOpen, onToggle }) {
           <div className="shrink-0">
             <PhotoOrScene
               scene={area.scene}
-              imageQuery={area.imageQuery}
               w={72}
               h={72}
-              imgSize="200x200"
             />
           </div>
           <div className="flex-1 min-w-0">
@@ -2080,10 +2226,9 @@ function AreaCard({ area, idx, isOpen, onToggle }) {
           <div className="mb-5">
             <PhotoOrScene
               scene={area.scene}
-              imageQuery={area.imageQuery}
+              realUrl={getRealImage(area)}
               w="100%"
               h={200}
-              imgSize="800x400"
             />
           </div>
 
@@ -2272,9 +2417,9 @@ export default function TripPlanner() {
       {/* ============ ヘッダー（ロゴ + ナビ） ============ */}
       <header className="px-6 pt-6 pb-4 flex items-center justify-between" style={{ borderBottom: `1px solid ${C.line}` }}>
         <div>
-          <div className="text-[9px] font-bold tracking-[0.3em]" style={{ color: C.ink3 }}>L · A · D · A · I · L · Y</div>
-          <div className="text-[14px] mt-0.5" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.1em' }}>
-            ロサンゼルス今日帖
+          <div className="text-[11px] font-bold tracking-[0.3em]" style={{ color: C.accent, fontFamily: FONT_SERIF_EN, fontStyle: 'italic' }}>HELLO ! L.A.</div>
+          <div className="text-[12px] mt-1" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.05em' }}>
+            きょうはロサンゼルスで何をしよう？
           </div>
         </div>
         <button className="p-1.5" style={{ color: C.ink2 }}>
@@ -2286,7 +2431,28 @@ export default function TripPlanner() {
       <section className="relative">
         {/* 大きな雰囲気のあるビジュアル */}
         <div className="relative" style={{ height: 460, background: 'linear-gradient(180deg, #1F2A4A 0%, #4A3A5C 18%, #B85540 38%, #E89055 56%, #F4C480 72%, #E8D4A8 100%)' }}>
-          <svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 w-full h-full">
+          {/* 実写写真（背景） */}
+          <img
+            src="https://images.unsplash.com/photo-1459258350879-34886319a3c9?w=1600&q=70&auto=format&fit=crop"
+            alt=""
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.85,
+            }}
+          />
+          {/* グラデオーバーレイ（テキスト読みやすく） */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(180deg, rgba(31,42,74,0.45) 0%, rgba(74,58,92,0.25) 30%, rgba(184,85,64,0.15) 55%, rgba(232,212,168,0.05) 100%)',
+            }}
+          />
+          <svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 w-full h-full" style={{ opacity: 0 }}>
             <defs>
               <linearGradient id="hSun" cx="0.5" cy="0.5" r="0.5">
                 <stop offset="0%" stopColor="#FFE89E" stopOpacity="1"/>
@@ -2387,41 +2553,54 @@ export default function TripPlanner() {
           <p className="text-[12.5px] leading-[2.1]" style={{ color: C.ink2, letterSpacing: '0.08em' }}>
             太平洋に面した広大な街、ロサンゼルス。<br />
             アートと映画、海と山、移民の食文化が一つの一日に同居する。<br />
-            その日その時にしか出会えない景色を、編んでお届けします。
+            その日その時にしか出会えない景色をご案内します。
           </p>
         </div>
       </section>
 
       {/* ============ 拠点情報 ============ */}
       <section className="px-6 py-8" style={{ borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}`, background: C.paper }}>
-        <div className="text-[9px] font-bold tracking-[0.4em] mb-3" style={{ color: C.ink3 }}>YOUR BASE</div>
-        <div className="flex items-start gap-4">
-          <div className="shrink-0">
-            <div className="w-12 h-12 flex items-center justify-center" style={{ background: C.ink, color: C.paper }}>
-              <Home size={18} strokeWidth={1.5} />
+        <div className="text-[9px] font-bold tracking-[0.4em] mb-3" style={{ color: C.ink3 }}>YOUR BASE — 拠点</div>
+        <a
+          href={HOME_BASE.mapUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block transition-opacity"
+          style={{ textDecoration: 'none' }}
+        >
+          <div className="flex items-start gap-4">
+            <div className="shrink-0">
+              <div className="w-12 h-12 flex items-center justify-center" style={{ background: C.ink, color: C.paper }}>
+                <Home size={18} strokeWidth={1.5} />
+              </div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-[18px] leading-tight" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.04em' }}>
+                {HOME_BASE.name}
+              </h3>
+              <div className="text-[10px] mt-1" style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', color: C.ink3, letterSpacing: '0.1em' }}>
+                {HOME_BASE.nameEn}
+              </div>
+              <div className="mt-3 text-[11px] leading-relaxed" style={{ color: C.ink2 }}>
+                {HOME_BASE.address}<br />
+                <span style={{ color: C.ink3 }}>{HOME_BASE.area}</span>
+              </div>
+              <div className="mt-3 inline-flex items-center gap-1.5 text-[10.5px] font-semibold" style={{ color: C.accent }}>
+                <MapPin size={11} strokeWidth={1.8} />
+                <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>タップでGoogle Mapで開く</span>
+                <ExternalLink size={10} strokeWidth={1.8} />
+              </div>
             </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-[18px] leading-tight" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.04em' }}>
-              {HOME_BASE.name}
-            </h3>
-            <div className="text-[10px] mt-1" style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', color: C.ink3, letterSpacing: '0.1em' }}>
-              {HOME_BASE.nameEn}
-            </div>
-            <div className="mt-3 text-[11px] leading-relaxed" style={{ color: C.ink2 }}>
-              {HOME_BASE.address}<br />
-              <span style={{ color: C.ink3 }}>{HOME_BASE.area}</span>
-            </div>
-          </div>
-        </div>
+        </a>
       </section>
 
       {/* ============ TODAY / 入力 ============ */}
       <section className="pt-14 pb-10">
         <SectionLabel
           romaji="TODAY"
-          jp="今日のロサンゼルスを、編む。"
-          sub="訪問日と興味を選ぶと、その日に楽しめる場所と催しを編集します。"
+          jp="今日のロサンゼルスを楽しむ。"
+          sub="訪問日と興味を選ぶと、その日に楽しめる場所と催しを提案します。"
         />
 
         <div className="px-6">
@@ -2511,11 +2690,11 @@ export default function TripPlanner() {
               opacity: generating ? 0.6 : 1,
             }}
           >
-            <span>{generating ? '編集中…' : (data ? '別の一日を編む' : 'この一日を編む')}</span>
+            <span>{generating ? '読み込み中…' : (data ? '別のプランやスポットを見る' : 'プランやスポットを見る')}</span>
             <ArrowRight size={14} strokeWidth={1.5} />
           </button>
           <div className="text-center text-[9.5px] mt-3 font-bold tracking-[0.3em]" style={{ color: C.ink3, fontFamily: FONT_SERIF_EN, fontStyle: 'italic' }}>
-            COMPOSE YOUR DAY
+            SHOW MY PLAN
           </div>
         </div>
       </section>
@@ -2531,9 +2710,9 @@ export default function TripPlanner() {
           {mode === 'plan' && (
             <section className="pt-14 pb-6" style={{ background: C.bg }}>
               <SectionLabel
-                romaji="YOUR PLAN — 自動生成された旅程"
-                jp="あなたの一日の編集。"
-                sub={`${formatJPDate(dateObj)}、${data.plan.slots.filter(s => !s.act.skip).length}の場所をめぐる旅程です。「別の一日を編む」で再生成、上のトグルで「発見」モードに切替えられます。`}
+                romaji="YOUR PLAN — 自動で作ったプラン"
+                jp="あなたの一日のプラン。"
+                sub={`${formatJPDate(dateObj)}、${data.plan.slots.filter(s => !s.act.skip).length}の場所をめぐるプランです。下のボタンで別のプランに、上のトグルで「発見」モードに切り替えられます。`}
               />
 
               {data.plan.themePark && (
@@ -2567,7 +2746,7 @@ export default function TripPlanner() {
                   }}
                 >
                   <Sparkles size={13} strokeWidth={1.5} />
-                  <span>{generating ? '編集中…' : 'もう一度 別のプランで編む'}</span>
+                  <span>{generating ? '読み込み中…' : '別のプランやスポットを見る'}</span>
                 </button>
               </div>
             </section>
@@ -2580,7 +2759,7 @@ export default function TripPlanner() {
                 <SectionLabel
                   romaji="TONIGHT"
                   jp="今夜の催し。"
-                  sub={`${formatJPDate(dateObj)}に開催されるイベントを編集しました。`}
+                  sub={`${formatJPDate(dateObj)}に開催されるイベントを集めました。`}
                 />
                 <div style={{ borderTop: `1px solid ${C.line}` }}>
                   {data.discover.events.map((ev, i) => (
