@@ -39,9 +39,9 @@ const C = {
 const HOME_BASE = {
   name: 'パーラ・オン・ブロードウェイ',
   nameEn: 'Pala on Broadway',
-  address: '460 S Broadway, Los Angeles',
+  address: '400 S Broadway, Los Angeles, CA 90013',
   area: 'Downtown LA',
-  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pala+on+Broadway+460+S+Broadway+Los+Angeles',
+  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pala+on+Broadway+400+S+Broadway+Los+Angeles+CA+90013',
 };
 
 // ============ 興味カテゴリー（11種） ============
@@ -1853,6 +1853,9 @@ const REAL_IMAGES_BY_SCENE = {
   // 食事系
   food_dinner: 'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',  // テーブル料理（高級ディナー雰囲気）
   food_sushi:  'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&q=70&auto=format&fit=crop',  // 寿司
+  food_taco:   'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=70&auto=format&fit=crop',  // タコス
+  food_burger: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=70&auto=format&fit=crop',  // バーガー
+  food_breakfast: 'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop', // 朝食
 };
 
 // 特定スポット名 → 実画像URL（sceneより優先）
@@ -1876,6 +1879,23 @@ const REAL_IMAGES_BY_NAME = {
   "Park's BBQ":                         'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
   'Republique（夜）':                    'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
   'Night + Market Song':                'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  // ランチ・カジュアル系
+  'Guisados':                           'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=70&auto=format&fit=crop',  // タコス
+  'In-N-Out Burger':                    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=70&auto=format&fit=crop',  // バーガー
+  "Howlin' Ray's":                      'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=70&auto=format&fit=crop',  // チキン（バーガー画像で代用）
+  // 朝食・カフェ系
+  'Sqirl':                              'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  'Bottega Louie':                      'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  'Republique':                         'https://images.unsplash.com/photo-1665119497123-4d2735fb9821?w=1200&q=70&auto=format&fit=crop',
+  // スポーツ
+  'Dodger Stadium ツアー':               'https://images.unsplash.com/photo-1695378201940-b82eef9bfd15?w=1200&q=70&auto=format&fit=crop',
+  'Dodgers Game 観戦':                   'https://images.unsplash.com/photo-1695378201940-b82eef9bfd15?w=1200&q=70&auto=format&fit=crop',
+  'Dodger Stadium':                      'https://images.unsplash.com/photo-1695378201940-b82eef9bfd15?w=1200&q=70&auto=format&fit=crop',
+  // 美術館（汎用ギャラリー外観・内観）
+  'The Broad':                          'https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=1200&q=70&auto=format&fit=crop',
+  'MOCA Grand Avenue':                  'https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=1200&q=70&auto=format&fit=crop',
+  'LACMA':                              'https://images.unsplash.com/photo-1587157013165-d2944ffe7094?w=1200&q=70&auto=format&fit=crop',
+  'Getty Center':                       'https://images.unsplash.com/photo-1587157013165-d2944ffe7094?w=1200&q=70&auto=format&fit=crop',
 };
 
 // エリアごとの大きい実画像（AreaCard展開用）
