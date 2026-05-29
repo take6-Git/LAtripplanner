@@ -7,7 +7,7 @@ import {
   Bell, Menu, Plus, Bookmark, Search, Home, Sliders, Map as MapIcon,
   Flame, Zap, CalendarCheck, Users, Filter, ArrowRight, Plane,
   Camera, Trophy, Compass, Globe, Instagram, ExternalLink, Info,
-  CloudSun, Banknote, Languages, ShieldCheck, Train, Video
+  CloudSun, Banknote, Languages, ShieldCheck, Train, Video, X
 } from 'lucide-react';
 
 // ============ パレット（編集デザイン版） ============
@@ -2602,10 +2602,26 @@ function AreaCard({ area, idx, isOpen, onToggle }) {
 // ============ お気に入り一覧セクション ============
 function FavoritesSection() {
   const { favList, toggleFav } = useFavs();
-  if (favList.length === 0) return null;
+
+  // 0件のときは案内だけ表示（メニューから飛べるようid付きセクションは常に存在）
+  if (favList.length === 0) {
+    return (
+      <section id="sec-favs" className="px-6 py-10" style={{ background: C.ink, scrollMarginTop: 12 }}>
+        <div className="flex items-center gap-2 mb-1">
+          <Star size={14} strokeWidth={1.8} style={{ color: C.ochre }} />
+          <div className="text-[9.5px] font-bold tracking-[0.4em]" style={{ color: C.ochre }}>
+            MY FAVORITES — 気になるリスト
+          </div>
+        </div>
+        <p className="text-[11px] mt-2 leading-relaxed" style={{ color: '#C9BBA0' }}>
+          各スポットの星マーク（☆）をタップすると、ここに気になる場所が集まります。まだ登録はありません。
+        </p>
+      </section>
+    );
+  }
 
   return (
-    <section className="px-6 py-10" style={{ background: C.ink }}>
+    <section id="sec-favs" className="px-6 py-10" style={{ background: C.ink, scrollMarginTop: 12 }}>
       <div className="flex items-center gap-2 mb-1">
         <Star size={14} strokeWidth={1.8} style={{ color: C.ochre, fill: C.ochre }} />
         <div className="text-[9.5px] font-bold tracking-[0.4em]" style={{ color: C.ochre }}>
@@ -2697,6 +2713,17 @@ function TripPlannerInner() {
   const [mode, setMode]         = useState('plan');
   const [data, setData]         = useState(null);
   const [generating, setGenerating] = useState(false);
+  const [justSucceeded, setJustSucceeded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // メニューから各セクションへスクロール
+  const goTo = (id) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  };
   const [openArea, setOpenArea] = useState(null);
 
   const dateObj = useMemo(() => new Date(date + 'T00:00'), [date]);
@@ -2712,31 +2739,62 @@ function TripPlannerInner() {
       const discover = generateDiscover(selected, dateObj);
       setData({ plan, discover });
       setGenerating(false);
+      // 完了表示（2秒間「Success！」）
+      setJustSucceeded(true);
+      setTimeout(() => setJustSucceeded(false), 2000);
     }, 500);
   };
 
-  // 初回マウント時に自動でプラン生成（旅程がすぐ見える状態にする）
-  useEffect(() => {
-    const plan = generateOneDay(selected, dateObj);
-    const discover = generateDiscover(selected, dateObj);
-    setData({ plan, discover });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // 初回はあえて自動生成しない（ユーザーが検索ボタンを押すまでスポットは出さない）
 
   return (
     <div className="min-h-screen" style={{ background: C.bg, fontFamily: FONT_SANS, color: C.ink }}>
 
       {/* ============ ヘッダー（ロゴ + ナビ） ============ */}
-      <header className="px-6 pt-6 pb-4 flex items-center justify-between" style={{ borderBottom: `1px solid ${C.line}` }}>
+      <header className="px-6 pt-6 pb-4 flex items-center justify-between relative" style={{ borderBottom: `1px solid ${C.line}` }}>
         <div>
           <div className="text-[11px] font-bold tracking-[0.3em]" style={{ color: C.accent, fontFamily: FONT_SERIF_EN, fontStyle: 'italic' }}>HELLO ! L.A.</div>
           <div className="text-[12px] mt-1" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.05em' }}>
             きょうはロサンゼルスで何をしよう？
           </div>
         </div>
-        <button className="p-1.5" style={{ color: C.ink2 }}>
-          <Menu size={18} strokeWidth={1.5} />
+        <button className="p-1.5" style={{ color: menuOpen ? C.accent : C.ink2 }} onClick={() => setMenuOpen(o => !o)} aria-label="メニュー">
+          {menuOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
         </button>
+
+        {/* ドロップダウンメニュー */}
+        {menuOpen && (
+          <>
+            <div className="fixed inset-0 z-40" style={{ background: 'rgba(26,20,16,0.2)' }} onClick={() => setMenuOpen(false)} />
+            <div
+              className="absolute right-4 top-full z-50 mt-1 py-2"
+              style={{ background: C.paper, border: `1px solid ${C.line}`, minWidth: 210, boxShadow: '0 8px 28px rgba(26,20,16,0.18)' }}
+            >
+              {[
+                { id: 'sec-howto',   en: 'HOW TO USE', jp: '使い方' },
+                { id: 'sec-today',   en: 'PLAN IT',    jp: '日付・興味・検索' },
+                { id: 'sec-areas',   en: 'AREAS',      jp: 'ロサンゼルスのかたち' },
+                { id: 'sec-info',    en: 'LA INFO',    jp: 'ロサンゼルスの基本' },
+                { id: 'sec-guides',  en: 'GUIDES',     jp: '日本語ガイド' },
+                { id: 'sec-favs',    en: 'FAVORITES',  jp: '気になるリスト' },
+              ].map((m) => (
+                <button
+                  key={m.id}
+                  onClick={() => goTo(m.id)}
+                  className="w-full text-left px-4 py-2.5 flex items-baseline gap-2 transition-colors hover:opacity-70"
+                  style={{ borderBottom: `1px dotted ${C.line}` }}
+                >
+                  <span style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', fontSize: 9, color: C.accent, letterSpacing: '0.1em', minWidth: 62 }}>
+                    {m.en}
+                  </span>
+                  <span style={{ fontFamily: FONT_MINCHO, fontSize: 12.5, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
+                    {m.jp}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </header>
 
       {/* ============ HERO ============ */}
@@ -2924,11 +2982,8 @@ function TripPlannerInner() {
         </div>
       </section>
 
-      {/* ============ お気に入り一覧（1件以上で表示） ============ */}
-      <FavoritesSection />
-
       {/* ============ 使い方ガイド ============ */}
-      <section className="px-6 py-10" style={{ background: C.paper, borderBottom: `1px solid ${C.line}` }}>
+      <section id="sec-howto" className="px-6 py-10" style={{ background: C.paper, borderBottom: `1px solid ${C.line}`, scrollMarginTop: 12 }}>
         <div className="text-[9.5px] font-bold tracking-[0.4em] mb-2 flex items-center gap-2" style={{ color: C.accent }}>
           <Info size={12} strokeWidth={1.8} />
           <span>HOW TO USE — 使い方</span>
@@ -2966,7 +3021,7 @@ function TripPlannerInner() {
       </section>
 
       {/* ============ TODAY / 入力 ============ */}
-      <section className="pt-14 pb-10">
+      <section id="sec-today" className="pt-14 pb-10" style={{ scrollMarginTop: 12 }}>
         <SectionLabel
           romaji="TODAY"
           jp="今日のロサンゼルスを楽しむ。"
@@ -3051,7 +3106,7 @@ function TripPlannerInner() {
             disabled={generating}
             className="w-full py-4 transition-all flex items-center justify-center gap-3"
             style={{
-              background: C.ink,
+              background: justSucceeded ? C.moss : C.accent,
               color: C.paper,
               fontFamily: FONT_MINCHO,
               fontSize: 14,
@@ -3060,8 +3115,9 @@ function TripPlannerInner() {
               opacity: generating ? 0.6 : 1,
             }}
           >
-            <span>{generating ? '読み込み中…' : (data ? 'もう一度さがす（別のプラン）' : 'Click Here！ワクワクをさがそう！')}</span>
-            <ArrowRight size={14} strokeWidth={1.5} />
+            <span>{generating ? '読み込み中…' : (justSucceeded ? 'Success！' : 'Click Here！ワクワクをさがそう！')}</span>
+            {!justSucceeded && <ArrowRight size={14} strokeWidth={1.5} />}
+            {justSucceeded && <Star size={14} strokeWidth={1.8} style={{ fill: C.paper }} />}
           </button>
           <div className="text-center text-[9.5px] mt-3 font-bold tracking-[0.3em]" style={{ color: C.ink3, fontFamily: FONT_SERIF_EN, fontStyle: 'italic' }}>
             SHOW MY PLAN
@@ -3116,7 +3172,7 @@ function TripPlannerInner() {
                   }}
                 >
                   <Sparkles size={13} strokeWidth={1.5} />
-                  <span>{generating ? '読み込み中…' : '別のプランやスポットを見る'}</span>
+                  <span>{generating ? '読み込み中…' : (justSucceeded ? 'Success！' : 'Click Here！ワクワクをさがそう！')}</span>
                 </button>
               </div>
             </section>
@@ -3157,7 +3213,7 @@ function TripPlannerInner() {
       )}
 
       {/* ============ AREAS ============ */}
-      <section className="pt-14 pb-6 mt-6" style={{ borderTop: `1px solid ${C.line}`, background: C.bg }}>
+      <section id="sec-areas" className="pt-14 pb-6 mt-6" style={{ borderTop: `1px solid ${C.line}`, background: C.bg, scrollMarginTop: 12 }}>
         <SectionLabel
           romaji="AREAS"
           jp="ロサンゼルスのかたち。"
@@ -3202,7 +3258,7 @@ function TripPlannerInner() {
       </div>
 
       {/* ============ LA INFO：基本データ ============ */}
-      <section className="pt-14 pb-10" style={{ background: C.bg, borderTop: `1px solid ${C.line}` }}>
+      <section id="sec-info" className="pt-14 pb-10" style={{ background: C.bg, borderTop: `1px solid ${C.line}`, scrollMarginTop: 12 }}>
         <SectionLabel
           romaji="LA INFO"
           jp="ロサンゼルスの基本。"
@@ -3311,7 +3367,7 @@ function TripPlannerInner() {
         </div>
 
         {/* 日本語ガイドサイト集 */}
-        <div className="px-6">
+        <div id="sec-guides" className="px-6" style={{ scrollMarginTop: 12 }}>
           <div className="text-[9.5px] font-bold tracking-[0.4em] mb-4 pb-2 flex items-center gap-2" style={{ color: C.accent, borderBottom: `1px solid ${C.accent}` }}>
             <BookOpen size={12} strokeWidth={1.8} />
             <span>GUIDES — 日本語で読めるLAガイド</span>
@@ -3360,6 +3416,9 @@ function TripPlannerInner() {
           </div>
         </div>
       </section>
+
+      {/* ============ お気に入り一覧（1件以上で表示・最下部） ============ */}
+      <FavoritesSection />
 
     </div>
   );
