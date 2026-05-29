@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, createContext, useContext } from 'react';
 import {
   Sparkles, MapPin, Palette, UtensilsCrossed, ShoppingBag, Mountain,
   Waves, Ticket, Clapperboard, Building2, Sun, Moon, Sunset,
@@ -59,6 +59,69 @@ const INTERESTS = [
   { id: 'experience', label: '体験',         en: 'Experience', icon: Compass,         color: '#6B4A2A' },
 ];
 const interestById = Object.fromEntries(INTERESTS.map(i => [i.id, i]));
+
+// ============ お気に入り（端末ローカル保存） ============
+const FAV_KEY = 'la_trip_favs_v1';
+
+const FavContext = createContext(null);
+
+// localStorageへの安全なアクセス（アーティファクト環境では失敗しうるのでtry/catch）
+function loadFavs() {
+  try {
+    const raw = window.localStorage.getItem(FAV_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
+function saveFavs(obj) {
+  try {
+    window.localStorage.setItem(FAV_KEY, JSON.stringify(obj));
+  } catch {
+    /* 保存できない環境では何もしない（メモリ上では保持される） */
+  }
+}
+
+function FavProvider({ children }) {
+  // favs: { [name]: { name, reading, kind, area, mapUrl, url, insta } }
+  const [favs, setFavs] = useState({});
+
+  // 初回マウントでlocalStorageから復元
+  useEffect(() => {
+    setFavs(loadFavs());
+  }, []);
+
+  const toggleFav = (item) => {
+    setFavs((prev) => {
+      const next = { ...prev };
+      if (next[item.name]) {
+        delete next[item.name];
+      } else {
+        next[item.name] = item;
+      }
+      saveFavs(next);
+      return next;
+    });
+  };
+
+  const isFav = (name) => !!favs[name];
+  const favList = Object.values(favs);
+
+  return (
+    <FavContext.Provider value={{ favs, favList, toggleFav, isFav }}>
+      {children}
+    </FavContext.Provider>
+  );
+}
+
+function useFavs() {
+  const ctx = useContext(FavContext);
+  // Provider外でも壊れないようフォールバック
+  if (!ctx) return { favs: {}, favList: [], toggleFav: () => {}, isFav: () => false };
+  return ctx;
+}
+
 // ============ 詳細SVGイラスト集（写真風） ============
 const Scenes = {
   // ==== サンタモニカ・ピア（観覧車つき夕景） ====
@@ -1944,6 +2007,58 @@ function PhotoOrScene({ scene, realUrl, w = 160, h = 160, rounded = 0 }) {
 }
 
 // ============ リンク行（日本語検索 / 公式URL / Instagram） ============
+// ============ お気に入りアイテム生成ヘルパー ============
+function favItemFromAct(act) {
+  return {
+    name: act.name,
+    reading: readingOf(act.name) || '',
+    kind: act.desc ? act.desc.slice(0, 40) : '',
+    area: act.area || '',
+    mapUrl: act.name ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(act.name + ' Los Angeles')}` : '',
+    url: act.url || '',
+    insta: act.insta || '',
+    cat: act.cat || '',
+  };
+}
+function favItemFromEvent(ev) {
+  return {
+    name: ev.title,
+    reading: '',
+    kind: ev.venue ? `会場：${ev.venue}` : '',
+    area: ev.venue || '',
+    mapUrl: ev.venue ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ev.venue + ' Los Angeles')}` : '',
+    url: ev.url || '',
+    insta: ev.insta || '',
+    cat: 'event',
+  };
+}
+
+// ============ お気に入りスターボタン ============
+function StarButton({ item, size = 22 }) {
+  const { isFav, toggleFav } = useFavs();
+  const active = isFav(item.name);
+  return (
+    <button
+      onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFav(item); }}
+      aria-label={active ? 'お気に入りから外す' : 'お気に入りに追加'}
+      className="shrink-0 flex items-center justify-center transition-transform active:scale-90"
+      style={{
+        width: size + 14,
+        height: size + 14,
+        borderRadius: '50%',
+        background: active ? C.accent : 'transparent',
+        border: `1.5px solid ${active ? C.accent : C.line}`,
+      }}
+    >
+      <Star
+        size={size}
+        strokeWidth={1.8}
+        style={{ color: active ? '#FBF5E5' : C.ink3, fill: active ? '#FBF5E5' : 'none' }}
+      />
+    </button>
+  );
+}
+
 function LinkRow({ url, insta, name, isFood }) {
   if (!url && !insta && !name) return null;
   const instaUrl = insta ? `https://instagram.com/${insta.replace(/^@/, '')}` : null;
@@ -2041,19 +2156,24 @@ function ArticleCard({ idx, slot }) {
         )}
       </div>
 
-      <h3 className="text-[20px] leading-tight mb-2" style={{ fontFamily: FONT_MINCHO, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
-        {act.name}
-        {act.fullDay && (
-          <span className="ml-2 inline-block text-[10px] px-1.5 py-0.5 align-middle" style={{ background: C.ochre, color: C.ink, fontFamily: FONT_SANS, fontWeight: 700, letterSpacing: '0.1em' }}>
-            ALL DAY
-          </span>
-        )}
-      </h3>
-      {readingOf(act.name) && (
-        <div className="-mt-1.5 mb-2 text-[11px]" style={{ color: C.ink3, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
-          {readingOf(act.name)}
+      <div className="flex items-start justify-between gap-3 mb-2">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-[20px] leading-tight" style={{ fontFamily: FONT_MINCHO, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
+            {act.name}
+            {act.fullDay && (
+              <span className="ml-2 inline-block text-[10px] px-1.5 py-0.5 align-middle" style={{ background: C.ochre, color: C.ink, fontFamily: FONT_SANS, fontWeight: 700, letterSpacing: '0.1em' }}>
+                ALL DAY
+              </span>
+            )}
+          </h3>
+          {readingOf(act.name) && (
+            <div className="mt-1 text-[11px]" style={{ color: C.ink3, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+              {readingOf(act.name)}
+            </div>
+          )}
         </div>
-      )}
+        <StarButton item={favItemFromAct(act)} />
+      </div>
 
       <p className="text-[12.5px] leading-[1.85]" style={{ color: C.ink2 }}>
         {act.desc}
@@ -2097,9 +2217,12 @@ function EventArticle({ ev, idx }) {
       <div className="text-[10.5px] tracking-[0.2em] mb-1" style={{ color: C.ink3, fontFamily: FONT_SANS }}>
         {ev.time}
       </div>
-      <h3 className="text-[18px] leading-tight mb-1" style={{ fontFamily: FONT_MINCHO, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
-        {ev.title}
-      </h3>
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-[18px] leading-tight flex-1" style={{ fontFamily: FONT_MINCHO, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
+          {ev.title}
+        </h3>
+        <StarButton item={favItemFromEvent(ev)} size={18} />
+      </div>
       <div className="text-[11.5px]" style={{ color: C.ink2, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
         会場：{ev.venue}
         {readingOf(ev.venue) && (
@@ -2122,13 +2245,16 @@ function SpotArticle({ act, idx }) {
   const num = String(idx + 1).padStart(2, '0');
   return (
     <div className="px-6 py-7" style={{ borderBottom: `1px solid ${C.line}` }}>
-      <div className="flex items-baseline gap-3 mb-4">
-        <span style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', fontSize: 24, color: C.accent, letterSpacing: '0.02em' }}>
-          {num}
-        </span>
-        <span className="text-[10px] font-bold tracking-[0.3em]" style={{ color: C.ink3 }}>
-          {act.area}
-        </span>
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <div className="flex items-baseline gap-3">
+          <span style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', fontSize: 24, color: C.accent, letterSpacing: '0.02em' }}>
+            {num}
+          </span>
+          <span className="text-[10px] font-bold tracking-[0.3em]" style={{ color: C.ink3 }}>
+            {act.area}
+          </span>
+        </div>
+        <StarButton item={favItemFromAct(act)} size={18} />
       </div>
       <div className="flex gap-4">
         <PhotoOrScene scene={act.scene} realUrl={getRealImage(act)} w={130} h={130} />
@@ -2447,8 +2573,97 @@ function AreaCard({ area, idx, isOpen, onToggle }) {
     </div>
   );
 }
+
+// ============ お気に入り一覧セクション ============
+function FavoritesSection() {
+  const { favList, toggleFav } = useFavs();
+  if (favList.length === 0) return null;
+
+  return (
+    <section className="px-6 py-10" style={{ background: C.ink }}>
+      <div className="flex items-center gap-2 mb-1">
+        <Star size={14} strokeWidth={1.8} style={{ color: C.ochre, fill: C.ochre }} />
+        <div className="text-[9.5px] font-bold tracking-[0.4em]" style={{ color: C.ochre }}>
+          MY FAVORITES — 気になるリスト
+        </div>
+      </div>
+      <p className="text-[11px] mb-5 leading-relaxed" style={{ color: '#C9BBA0' }}>
+        星をつけた場所がここに集まります（この端末にのみ保存）。{favList.length}件。
+      </p>
+
+      <div className="space-y-3">
+        {favList.map((f, i) => (
+          <div
+            key={i}
+            className="p-4"
+            style={{ background: '#241C14', border: `1px solid #3A2E22` }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
+                <div style={{ fontFamily: FONT_MINCHO, fontSize: 15, color: '#FBF5E5', fontWeight: 500, letterSpacing: '0.04em' }}>
+                  {f.name}
+                </div>
+                {f.reading && (
+                  <div className="mt-0.5 text-[10.5px]" style={{ color: '#A99A82', fontFamily: FONT_SANS }}>
+                    {f.reading}
+                  </div>
+                )}
+                {f.kind && (
+                  <div className="mt-1.5 text-[11px] leading-relaxed" style={{ color: '#C9BBA0' }}>
+                    {f.kind}
+                  </div>
+                )}
+              </div>
+              <button
+                onClick={() => toggleFav(f)}
+                aria-label="お気に入りから外す"
+                className="shrink-0 flex items-center justify-center transition-transform active:scale-90"
+                style={{ width: 34, height: 34, borderRadius: '50%', background: C.ochre }}
+              >
+                <Star size={17} strokeWidth={1.8} style={{ color: C.ink, fill: C.ink }} />
+              </button>
+            </div>
+
+            {/* リンク類 */}
+            <div className="mt-3 pt-3 flex items-center gap-2 flex-wrap" style={{ borderTop: `1px dotted #3A2E22` }}>
+              {f.mapUrl && (
+                <a href={f.mapUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[10px] px-2.5 py-1"
+                  style={{ color: '#FBF5E5', border: `1px solid #3A2E22`, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+                  <MapPin size={10} strokeWidth={1.8} />地図
+                </a>
+              )}
+              <a href={`https://www.google.com/search?q=${encodeURIComponent(f.name + ' ' + (f.area || '') + ' 観光')}&hl=ja`}
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[10px] px-2.5 py-1"
+                style={{ color: '#FBF5E5', border: `1px solid #3A2E22`, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+                <Search size={10} strokeWidth={1.8} />調べる
+              </a>
+              {f.insta && (
+                <a href={`https://instagram.com/${f.insta.replace(/^@/, '')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[10px] px-2.5 py-1"
+                  style={{ color: '#FBF5E5', border: `1px solid #3A2E22`, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+                  <Instagram size={10} strokeWidth={1.8} />写真
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 // ============ メインコンポーネント ============
 export default function TripPlanner() {
+  return (
+    <FavProvider>
+      <TripPlannerInner />
+    </FavProvider>
+  );
+}
+
+function TripPlannerInner() {
   const today = new Date();
   const todayStr = today.toISOString().slice(0, 10);
 
@@ -2666,6 +2881,9 @@ export default function TripPlanner() {
           </div>
         </a>
       </section>
+
+      {/* ============ お気に入り一覧（1件以上で表示） ============ */}
+      <FavoritesSection />
 
       {/* ============ TODAY / 入力 ============ */}
       <section className="pt-14 pb-10">
