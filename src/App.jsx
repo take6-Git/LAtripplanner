@@ -7,7 +7,7 @@ import {
   Bell, Menu, Plus, Bookmark, Search, Home, Sliders, Map as MapIcon,
   Flame, Zap, CalendarCheck, Users, Filter, ArrowRight, Plane,
   Camera, Trophy, Compass, Globe, Instagram, ExternalLink, Info,
-  CloudSun, Banknote, Languages, ShieldCheck, Train
+  CloudSun, Banknote, Languages, ShieldCheck, Train, Video
 } from 'lucide-react';
 
 // ============ パレット（編集デザイン版） ============
@@ -1850,10 +1850,7 @@ const REAL_IMAGES_BY_SCENE = {
   mountain:    'https://images.unsplash.com/photo-1649080832349-06b15253c27c?w=1200&q=70&auto=format&fit=crop',
   art:         'https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=1200&q=70&auto=format&fit=crop',
   little_tokyo:'https://images.unsplash.com/photo-1609320518571-cbde7ea56184?w=1200&q=70&auto=format&fit=crop',
-  // 食事系（ジャンルが写真と明確に一致するもののみ）
-  food_sushi:  'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&q=70&auto=format&fit=crop',  // 寿司
-  food_taco:   'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=70&auto=format&fit=crop',  // タコス
-  food_burger: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=70&auto=format&fit=crop',  // バーガー
+  // 食事系は実画像を使わずイラスト統一（実際のメニューと写真のミスマッチを避けるため）
 };
 
 // 特定スポット名 → 実画像URL（sceneより優先）
@@ -1869,11 +1866,6 @@ const REAL_IMAGES_BY_NAME = {
   'Bradbury Building':                  'https://images.unsplash.com/photo-1620135791944-e05e9f8f2f2a?w=1200&q=70&auto=format&fit=crop',
   'Walt Disney Concert Hall':           'https://images.unsplash.com/photo-1601783210890-d921f8d008b3?w=1200&q=70&auto=format&fit=crop',
   'Rodeo Drive':                        'https://images.unsplash.com/photo-1567898948655-acbf0ebe1606?w=1200&q=70&auto=format&fit=crop',
-  // 食事系（ジャンルが写真と明確に一致するもののみ実写、それ以外はイラスト）
-  'Daikokuya Ramen':                    'https://images.unsplash.com/photo-1591325418441-ff678baf78ef?w=1200&q=70&auto=format&fit=crop',  // ラーメン
-  'Sushi Gen':                          'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&q=70&auto=format&fit=crop',  // 寿司
-  'Guisados':                           'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=70&auto=format&fit=crop',  // タコス
-  'In-N-Out Burger':                    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=70&auto=format&fit=crop',  // バーガー
   // スポーツ
   'Dodger Stadium ツアー':               'https://images.unsplash.com/photo-1695378201940-b82eef9bfd15?w=1200&q=70&auto=format&fit=crop',
   'Dodgers Game 観戦':                   'https://images.unsplash.com/photo-1695378201940-b82eef9bfd15?w=1200&q=70&auto=format&fit=crop',
@@ -1952,7 +1944,7 @@ function PhotoOrScene({ scene, realUrl, w = 160, h = 160, rounded = 0 }) {
 }
 
 // ============ リンク行（日本語検索 / 公式URL / Instagram） ============
-function LinkRow({ url, insta, name }) {
+function LinkRow({ url, insta, name, isFood }) {
   if (!url && !insta && !name) return null;
   const instaUrl = insta ? `https://instagram.com/${insta.replace(/^@/, '')}` : null;
   const searchUrl = name ? `https://www.google.com/search?q=${encodeURIComponent(name + ' ロサンゼルス 観光')}&hl=ja` : null;
@@ -2002,14 +1994,16 @@ function LinkRow({ url, insta, name }) {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-between gap-2 text-[10.5px]"
-          style={{ color: C.sub }}
+          style={{ color: isFood ? C.accent : C.sub }}
         >
           <span className="inline-flex items-center gap-1.5">
             <Instagram size={11} strokeWidth={1.8} />
-            <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>Instagram</span>
+            <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em', fontWeight: isFood ? 700 : 400 }}>
+              {isFood ? '実際の料理を見る' : 'Instagram'}
+            </span>
           </span>
           <span className="inline-flex items-center gap-1" style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', color: C.ink2 }}>
-            {insta}
+            {isFood ? `公式インスタ ${insta}` : insta}
             <ExternalLink size={10} strokeWidth={1.8} />
           </span>
         </a>
@@ -2079,7 +2073,7 @@ function ArticleCard({ idx, slot }) {
         <span>{act.area}</span>
       </div>
 
-      <LinkRow url={act.url} insta={act.insta} name={act.name} />
+      <LinkRow url={act.url} insta={act.insta} name={act.name} isFood={act.cat === 'food'} />
     </div>
   );
 }
@@ -2163,7 +2157,7 @@ function SpotArticle({ act, idx }) {
         </div>
       </div>
 
-      <LinkRow url={act.url} insta={act.insta} name={act.name} />
+      <LinkRow url={act.url} insta={act.insta} name={act.name} isFood={act.cat === 'food'} />
     </div>
   );
 }
@@ -2326,25 +2320,67 @@ function AreaCard({ area, idx, isOpen, onToggle }) {
               <span>HIGHLIGHTS — 見どころ</span>
             </div>
             <div>
-              {area.highlights.map((h, i) => (
-                <div
-                  key={i}
-                  className="flex items-baseline gap-3 py-2.5"
-                  style={{ borderBottom: `1px dotted ${C.line}` }}
-                >
-                  <span style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', fontSize: 14, color: C.accent, minWidth: 24 }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div style={{ fontFamily: FONT_MINCHO, fontSize: 13.5, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
-                      {h.name}
-                    </div>
-                    <div className="text-[10.5px] mt-0.5" style={{ color: C.ink3, letterSpacing: '0.03em' }}>
-                      {h.kind}
+              {area.highlights.map((h, i) => {
+                const q = encodeURIComponent(h.name + ' Los Angeles');
+                const qJp = encodeURIComponent(h.name + ' ' + area.jp + ' 観光');
+                const webUrl   = `https://www.google.com/search?q=${qJp}&hl=ja`;
+                const igUrl    = `https://www.google.com/search?q=${q}+instagram`;
+                const ytUrl    = `https://www.youtube.com/results?search_query=${q}`;
+                return (
+                  <div
+                    key={i}
+                    className="py-3"
+                    style={{ borderBottom: `1px dotted ${C.line}` }}
+                  >
+                    <div className="flex items-baseline gap-3">
+                      <span style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', fontSize: 14, color: C.accent, minWidth: 24 }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div style={{ fontFamily: FONT_MINCHO, fontSize: 13.5, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
+                          {h.name}
+                        </div>
+                        <div className="text-[10.5px] mt-0.5" style={{ color: C.ink3, letterSpacing: '0.03em' }}>
+                          {h.kind}
+                        </div>
+                        {/* リンク3種 */}
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          <a
+                            href={webUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[9.5px] px-2 py-1"
+                            style={{ color: C.sub, border: `1px solid ${C.line}`, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}
+                          >
+                            <Search size={9} strokeWidth={1.8} />
+                            日本語で調べる
+                          </a>
+                          <a
+                            href={igUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[9.5px] px-2 py-1"
+                            style={{ color: '#C8336B', border: `1px solid ${C.line}`, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}
+                          >
+                            <Instagram size={9} strokeWidth={1.8} />
+                            写真・SNS
+                          </a>
+                          <a
+                            href={ytUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[9.5px] px-2 py-1"
+                            style={{ color: C.accent, border: `1px solid ${C.line}`, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}
+                          >
+                            <Video size={9} strokeWidth={1.8} />
+                            動画
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
