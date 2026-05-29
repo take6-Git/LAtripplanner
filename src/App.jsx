@@ -42,7 +42,7 @@ const HOME_BASE = {
   address: '400 S Broadway, Los Angeles, CA 90013',
   area: 'Downtown LA',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pala+on+Broadway+400+S+Broadway+Los+Angeles+CA+90013',
-  airbnbUrl: 'https://www.airbnb.jp/rooms/590725126714089771',
+  airbnbUrl: 'https://www.airbnb.jp/rooms/590725126714089771?modal=PHOTO_TOUR_SCROLLABLE',
 };
 
 // ============ 興味カテゴリー（11種） ============
@@ -1100,142 +1100,142 @@ const Scenes = {
 // insta: Instagramハンドル (なければnull)
 const ACTIVITIES = {
   breakfast: [
-    { name: 'Grand Central Market',  desc: '100年続く屋台フードホール。Eggslutのサンドが人気',  area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: Coffee, cat: 'food',    rating: 4.6, scene: 'food_breakfast', hours: '8:00-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://grandcentralmarket.com', insta: '@grandcentralmarket' },
-    { name: 'Sqirl',                 desc: 'リコッタトーストとジャム瓶で有名なカフェ',         area: 'Silver Lake',  distance: '車 15分',   mode: 'car',  icon: Coffee, cat: 'food',    rating: 4.5, scene: 'food_breakfast', hours: '8:00-15:00', dayBadge: { text: '行列予想', kind: 'hot' }, url: 'https://www.sqirlla.com', insta: '@sqirlla' },
-    { name: 'Republique',            desc: '美しい歴史的建築の中のフレンチカフェ',             area: 'Mid-Wilshire', distance: '車 15分',   mode: 'car',  icon: Coffee, cat: 'food',    rating: 4.6, scene: 'food_breakfast', hours: '8:00-23:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://republiquela.com', insta: '@republiquela' },
-    { name: 'Bottega Louie',         desc: '大理石の店内とマカロンで映える朝食',               area: 'DTLA',         distance: '徒歩 8分',  mode: 'walk', icon: Coffee, cat: 'food',    rating: 4.4, scene: 'food_breakfast', hours: '8:00-23:00', dayBadge: { text: '予約推奨', kind: 'hot' }, url: 'https://bottegalouie.com', insta: '@bottegalouie' },
-    { name: 'Cofax Coffee',          desc: 'ドーナツとコーヒーで朝の小休止',                   area: 'Fairfax',      distance: '車 20分',   mode: 'car',  icon: Coffee, cat: 'food',    rating: 4.5, scene: 'food_breakfast', hours: '7:00-15:00', dayBadge: null, url: 'https://www.cofaxcoffee.com', insta: '@cofaxcoffee' },
+    { name: 'Grand Central Market',  desc: '100年続く屋台フードホール。Eggslutのサンドが人気',  area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: Coffee, cat: 'food',    rating: 4.6, price: '~$15', scene: 'food_breakfast', hours: '8:00-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://grandcentralmarket.com', insta: '@grandcentralmarket' },
+    { name: 'Sqirl',                 desc: 'リコッタトーストとジャム瓶で有名なカフェ',         area: 'Silver Lake',  distance: '車 15分',   mode: 'car',  icon: Coffee, cat: 'food',    rating: 4.5, price: '~$20', scene: 'food_breakfast', hours: '8:00-15:00', dayBadge: { text: '行列予想', kind: 'hot' }, url: 'https://www.sqirlla.com', insta: '@sqirlla' },
+    { name: 'Republique',            desc: '美しい歴史的建築の中のフレンチカフェ',             area: 'Mid-Wilshire', distance: '車 15分',   mode: 'car',  icon: Coffee, cat: 'food',    rating: 4.6, price: '~$20', scene: 'food_breakfast', hours: '8:00-23:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://republiquela.com', insta: '@republiquela' },
+    { name: 'Bottega Louie',         desc: '大理石の店内とマカロンで映える朝食',               area: 'DTLA',         distance: '徒歩 8分',  mode: 'walk', icon: Coffee, cat: 'food',    rating: 4.4, price: '~$25', scene: 'food_breakfast', hours: '8:00-23:00', dayBadge: { text: '予約推奨', kind: 'hot' }, url: 'https://bottegalouie.com', insta: '@bottegalouie' },
+    { name: 'Cofax Coffee',          desc: 'ドーナツとコーヒーで朝の小休止',                   area: 'Fairfax',      distance: '車 20分',   mode: 'car',  icon: Coffee, cat: 'food',    rating: 4.5, price: '~$10', scene: 'food_breakfast', hours: '7:00-15:00', dayBadge: null, url: 'https://www.cofaxcoffee.com', insta: '@cofaxcoffee' },
   ],
   lunch: [
     { name: "Howlin' Ray's",         desc: 'ナッシュビル・ホットチキンの行列店',               area: 'Chinatown',    distance: '車 5分',    mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.7, scene: 'food_burger', hours: '11:00-21:00', dayBadge: { text: '行列予想', kind: 'hot' }, url: 'https://www.howlinrays.com', insta: '@howlinrays' },
-    { name: 'Philippe the Original', desc: '1908年創業、フレンチディップ発祥の店',             area: 'Chinatown',    distance: '車 5分',    mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.5, scene: 'food_burger', hours: '6:00-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.philippes.com', insta: '@philippestheoriginal' },
-    { name: 'Sushi Gen',             desc: 'リトル東京のお値打ち寿司ランチ',                   area: 'Little Tokyo', distance: '徒歩 15分', mode: 'walk', icon: Pizza, cat: 'food',     rating: 4.5, scene: 'food_sushi', hours: '11:15-14:00 / 17:30-21:30', dayBadge: { text: 'ランチ営業中', kind: 'open' }, url: 'https://www.google.com/search?q=Sushi+Gen+Little+Tokyo', insta: null },
-    { name: 'Mendocino Farms',       desc: 'カリフォルニア式サンドイッチでヘルシーに',         area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Pizza, cat: 'food',     rating: 4.6, scene: 'food_burger', hours: '11:00-21:00', dayBadge: null, url: 'https://www.mendocinofarms.com', insta: '@mendocinofarms' },
-    { name: 'In-N-Out Burger',       desc: 'カリフォルニア定番。Double-Doubleを',              area: '各地',          distance: '車 15分',   mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.5, scene: 'food_burger', hours: '10:30-1:00', dayBadge: null, url: 'https://www.in-n-out.com', insta: '@innout' },
-    { name: 'Guisados',              desc: '本場メキシカン・タコスの名店',                     area: 'Boyle Heights',distance: '車 10分',   mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.6, scene: 'food_taco', hours: '11:00-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.guisados.co', insta: '@guisadostacos' },
+    { name: 'Philippe the Original', desc: '1908年創業、フレンチディップ発祥の店',             area: 'Chinatown',    distance: '車 5分',    mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.5, price: '~$15', scene: 'food_burger', hours: '6:00-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.philippes.com', insta: '@philippestheoriginal' },
+    { name: 'Sushi Gen',             desc: 'リトル東京のお値打ち寿司ランチ',                   area: 'Little Tokyo', distance: '徒歩 15分', mode: 'walk', icon: Pizza, cat: 'food',     rating: 4.5, price: '$20~30', scene: 'food_sushi', hours: '11:15-14:00 / 17:30-21:30', dayBadge: { text: 'ランチ営業中', kind: 'open' }, url: 'https://www.google.com/search?q=Sushi+Gen+Little+Tokyo', insta: null },
+    { name: 'Mendocino Farms',       desc: 'カリフォルニア式サンドイッチでヘルシーに',         area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Pizza, cat: 'food',     rating: 4.6, price: '~$18', scene: 'food_burger', hours: '11:00-21:00', dayBadge: null, url: 'https://www.mendocinofarms.com', insta: '@mendocinofarms' },
+    { name: 'In-N-Out Burger',       desc: 'カリフォルニア定番。Double-Doubleを',              area: '各地',          distance: '車 15分',   mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.5, price: '~$10', scene: 'food_burger', hours: '10:30-1:00', dayBadge: null, url: 'https://www.in-n-out.com', insta: '@innout' },
+    { name: 'Guisados',              desc: '本場メキシカン・タコスの名店',                     area: 'Boyle Heights',distance: '車 10分',   mode: 'car',  icon: Pizza, cat: 'food',     rating: 4.6, price: '~$15', scene: 'food_taco', hours: '11:00-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.guisados.co', insta: '@guisadostacos' },
   ],
   dinner: [
-    { name: 'Bestia',                desc: 'アーツ・ディストリクトの予約困難イタリアン',       area: 'Arts District',distance: '車 10分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.7, scene: 'food_dinner', hours: '17:00-23:00', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://bestiala.com', insta: '@bestiala' },
-    { name: 'Bavel',                 desc: '中東料理。ラム肩肉のスローローストが看板',         area: 'Arts District',distance: '車 10分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.7, scene: 'food_dinner', hours: '17:30-22:30', dayBadge: { text: '予約推奨', kind: 'hot' }, url: 'https://baveldtla.com', insta: '@bavel_la' },
+    { name: 'Bestia',                desc: 'アーツ・ディストリクトの予約困難イタリアン',       area: 'Arts District',distance: '車 10分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.7, price: '$60~100', scene: 'food_dinner', hours: '17:00-23:00', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://bestiala.com', insta: '@bestiala' },
+    { name: 'Bavel',                 desc: '中東料理。ラム肩肉のスローローストが看板',         area: 'Arts District',distance: '車 10分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.7, price: '$60~100', scene: 'food_dinner', hours: '17:30-22:30', dayBadge: { text: '予約推奨', kind: 'hot' }, url: 'https://baveldtla.com', insta: '@bavel_la' },
     { name: "Park's BBQ",            desc: '韓国焼肉のトップクラス。マリネ肉が絶品',           area: 'Koreatown',    distance: '車 15分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.6, scene: 'food_dinner', hours: '11:00-23:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.parksbbq.com', insta: '@parks_bbq' },
-    { name: 'Republique（夜）',       desc: '昼カフェ・夜ビストロの二面性',                     area: 'Mid-Wilshire', distance: '車 15分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.5, scene: 'food_dinner', hours: '17:30-22:30', dayBadge: null, url: 'https://republiquela.com', insta: '@republiquela' },
-    { name: 'Daikokuya Ramen',       desc: 'リトル東京の老舗ラーメン。トンコツ系',             area: 'Little Tokyo', distance: '徒歩 15分', mode: 'walk', icon: Wine, cat: 'food',      rating: 4.4, scene: 'food_sushi', hours: '11:00-24:00', dayBadge: { text: '深夜営業', kind: 'open' }, url: 'https://www.daikoku-ten.com', insta: '@daikokuyaramen' },
-    { name: 'Night + Market Song',   desc: 'タイ屋台料理。クラフトビールと一緒に',             area: 'Silver Lake',  distance: '車 15分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.5, scene: 'food_taco', hours: '17:00-23:00', dayBadge: null, url: 'https://www.nightmarketsong.com', insta: '@nightmarketsong' },
+    { name: 'Republique（夜）',       desc: '昼カフェ・夜ビストロの二面性',                     area: 'Mid-Wilshire', distance: '車 15分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.5, price: '$40~70', scene: 'food_dinner', hours: '17:30-22:30', dayBadge: null, url: 'https://republiquela.com', insta: '@republiquela' },
+    { name: 'Daikokuya Ramen',       desc: 'リトル東京の老舗ラーメン。トンコツ系',             area: 'Little Tokyo', distance: '徒歩 15分', mode: 'walk', icon: Wine, cat: 'food',      rating: 4.4, price: '~$20', scene: 'food_sushi', hours: '11:00-24:00', dayBadge: { text: '深夜営業', kind: 'open' }, url: 'https://www.daikoku-ten.com', insta: '@daikokuyaramen' },
+    { name: 'Night + Market Song',   desc: 'タイ屋台料理。クラフトビールと一緒に',             area: 'Silver Lake',  distance: '車 15分',   mode: 'car',  icon: Wine, cat: 'food',      rating: 4.5, price: '$30~50', scene: 'food_taco', hours: '17:00-23:00', dayBadge: null, url: 'https://www.nightmarketsong.com', insta: '@nightmarketsong' },
   ],
   morning: {
     art: [
-      { name: 'The Broad',            desc: '無料の現代美術館。クサマのInfinity Roomで予約必須',area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Palette, cat: 'art',     rating: 4.7, scene: 'art', hours: '11:00-17:00', dayBadge: { text: '特別展中', kind: 'event' }, url: 'https://www.thebroad.org', insta: '@thebroadmuseum' },
-      { name: 'MOCA Grand Avenue',    desc: '現代美術の常設展と特別展。建築も見もの',          area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Palette, cat: 'art',     rating: 4.4, scene: 'art', hours: '11:00-18:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.moca.org', insta: '@moca' },
-      { name: 'Hauser & Wirth',       desc: 'アーツ・ディストリクトの巨大ギャラリー。入場無料',area: 'Arts District',distance: '車 10分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.6, scene: 'art', hours: '11:00-18:00', dayBadge: null, url: 'https://www.hauserwirth.com/locations/los-angeles', insta: '@hauserwirth' },
+      { name: 'The Broad',            desc: '無料の現代美術館。クサマのInfinity Roomで予約必須',area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Palette, cat: 'art',     rating: 4.7, price: '無料（特別展は有料）', scene: 'art', hours: '11:00-17:00', dayBadge: { text: '特別展中', kind: 'event' }, url: 'https://www.thebroad.org', insta: '@thebroadmuseum' },
+      { name: 'MOCA Grand Avenue',    desc: '現代美術の常設展と特別展。建築も見もの',          area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Palette, cat: 'art',     rating: 4.4, price: '$18前後', scene: 'art', hours: '11:00-18:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.moca.org', insta: '@moca' },
+      { name: 'Hauser & Wirth',       desc: 'アーツ・ディストリクトの巨大ギャラリー。入場無料',area: 'Arts District',distance: '車 10分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.6, price: '無料', scene: 'art', hours: '11:00-18:00', dayBadge: null, url: 'https://www.hauserwirth.com/locations/los-angeles', insta: '@hauserwirth' },
     ],
     nature: [
-      { name: 'Runyon Canyon ハイキング',desc: 'ハリウッドの定番。市街地を見下ろす絶景の朝活',  area: 'Hollywood',    distance: '車 25分',   mode: 'car',  icon: Mountain, cat: 'nature', rating: 4.5, scene: 'mountain', hours: '日の出-日没', dayBadge: null, url: 'https://www.laparks.org/runyon', insta: null },
-      { name: 'Echo Park Lake',       desc: 'スワンボートと蓮の花。DTLAの背景が映える',        area: 'Echo Park',    distance: '車 10分',   mode: 'car',  icon: Mountain, cat: 'nature', rating: 4.5, scene: 'mountain', hours: '終日', dayBadge: null, url: 'https://www.laparks.org/aquatic/lake/echo-park-lake', insta: null },
-      { name: 'Griffith Park 散策',   desc: '広大な都市公園でハイキング。涼しい朝のうちに',    area: 'Los Feliz',    distance: '車 25分',   mode: 'car',  icon: Mountain, cat: 'nature', rating: 4.6, scene: 'mountain', hours: '5:00-22:30', dayBadge: null, url: 'https://www.laparks.org/griffithpark', insta: null },
+      { name: 'Runyon Canyon ハイキング',desc: 'ハリウッドの定番。市街地を見下ろす絶景の朝活',  area: 'Hollywood',    distance: '車 25分',   mode: 'car',  icon: Mountain, cat: 'nature', rating: 4.5, price: '無料', scene: 'mountain', hours: '日の出-日没', dayBadge: null, url: 'https://www.laparks.org/runyon', insta: null },
+      { name: 'Echo Park Lake',       desc: 'スワンボートと蓮の花。DTLAの背景が映える',        area: 'Echo Park',    distance: '車 10分',   mode: 'car',  icon: Mountain, cat: 'nature', rating: 4.5, price: '無料（ボート$13~）', scene: 'mountain', hours: '終日', dayBadge: null, url: 'https://www.laparks.org/aquatic/lake/echo-park-lake', insta: null },
+      { name: 'Griffith Park 散策',   desc: '広大な都市公園でハイキング。涼しい朝のうちに',    area: 'Los Feliz',    distance: '車 25分',   mode: 'car',  icon: Mountain, cat: 'nature', rating: 4.6, price: '無料', scene: 'mountain', hours: '5:00-22:30', dayBadge: null, url: 'https://www.laparks.org/griffithpark', insta: null },
     ],
     beach: [
-      { name: 'Santa Monica Pier',    desc: '観覧車のあるピアと真っ白なビーチ',                area: 'Santa Monica', distance: '車 30分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.6, scene: 'pier', hours: '6:00-25:00', dayBadge: { text: '今夜花火 21:00', kind: 'event' }, url: 'https://www.santamonicapier.org', insta: '@santamonicapier' },
-      { name: 'Venice Beach 朝活',    desc: 'ボードウォーク散歩とマッスルビーチ見物',          area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.4, scene: 'beach', hours: '終日', dayBadge: null, url: 'https://www.venicebeach.com', insta: '@visitvenice' },
-      { name: 'Manhattan Beach',      desc: '高級住宅街の静かなビーチでのんびり',              area: 'South Bay',    distance: '車 30分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.7, scene: 'beach', hours: '終日', dayBadge: null, url: 'https://www.citymb.info', insta: null },
+      { name: 'Santa Monica Pier',    desc: '観覧車のあるピアと真っ白なビーチ',                area: 'Santa Monica', distance: '車 30分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.6, price: '無料（乗物別）', scene: 'pier', hours: '6:00-25:00', dayBadge: { text: '今夜花火 21:00', kind: 'event' }, url: 'https://www.santamonicapier.org', insta: '@santamonicapier' },
+      { name: 'Venice Beach 朝活',    desc: 'ボードウォーク散歩とマッスルビーチ見物',          area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.4, price: '無料', scene: 'beach', hours: '終日', dayBadge: null, url: 'https://www.venicebeach.com', insta: '@visitvenice' },
+      { name: 'Manhattan Beach',      desc: '高級住宅街の静かなビーチでのんびり',              area: 'South Bay',    distance: '車 30分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.7, price: '無料', scene: 'beach', hours: '終日', dayBadge: null, url: 'https://www.citymb.info', insta: null },
     ],
     history: [
-      { name: 'Bradbury Building',    desc: '1893年築の鉄細工の名建築。Palaの目の前',          area: 'DTLA',         distance: '徒歩 1分',  mode: 'walk', icon: Building2, cat: 'history',rating: 4.6, scene: 'historic', hours: '9:00-17:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.laconservancy.org/learn/historic-places/bradbury-building', insta: null },
-      { name: 'Olvera Street',        desc: 'LA発祥の地。メキシカン・マーケットと教会',        area: 'DTLA',         distance: '車 5分',    mode: 'car',  icon: Building2, cat: 'history',rating: 4.4, scene: 'little_tokyo', hours: '10:00-19:00', dayBadge: null, url: 'https://www.olvera-street.com', insta: '@olverastreet' },
-      { name: 'Walt Disney Concert Hall',desc: 'フランク・ゲーリー設計。外観だけでも価値あり', area: 'DTLA',         distance: '徒歩 15分', mode: 'walk', icon: Building2, cat: 'history',rating: 4.7, scene: 'skyline', hours: '10:00-21:00', dayBadge: { text: '今夜公演 20:00', kind: 'event' }, url: 'https://www.laphil.com/visit/wdch', insta: '@laphil' },
-      { name: 'Union Station',        desc: '1939年築のスパニッシュ・コロニアル様式の駅舎',    area: 'DTLA',         distance: '車 5分',    mode: 'car',  icon: Building2, cat: 'history',rating: 4.5, scene: 'historic', hours: '24時間', dayBadge: null, url: 'https://unionstationla.com', insta: '@unionstationla' },
+      { name: 'Bradbury Building',    desc: '1893年築の鉄細工の名建築。Palaの目の前',          area: 'DTLA',         distance: '徒歩 1分',  mode: 'walk', icon: Building2, cat: 'history',rating: 4.6, price: '無料（ロビーのみ）', scene: 'historic', hours: '9:00-17:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.laconservancy.org/learn/historic-places/bradbury-building', insta: null },
+      { name: 'Olvera Street',        desc: 'LA発祥の地。メキシカン・マーケットと教会',        area: 'DTLA',         distance: '車 5分',    mode: 'car',  icon: Building2, cat: 'history',rating: 4.4, price: '無料', scene: 'little_tokyo', hours: '10:00-19:00', dayBadge: null, url: 'https://www.olvera-street.com', insta: '@olverastreet' },
+      { name: 'Walt Disney Concert Hall',desc: 'フランク・ゲーリー設計。外観だけでも価値あり', area: 'DTLA',         distance: '徒歩 15分', mode: 'walk', icon: Building2, cat: 'history',rating: 4.7, price: '無料（外観/ツアー別）', scene: 'skyline', hours: '10:00-21:00', dayBadge: { text: '今夜公演 20:00', kind: 'event' }, url: 'https://www.laphil.com/visit/wdch', insta: '@laphil' },
+      { name: 'Union Station',        desc: '1939年築のスパニッシュ・コロニアル様式の駅舎',    area: 'DTLA',         distance: '車 5分',    mode: 'car',  icon: Building2, cat: 'history',rating: 4.5, price: '無料', scene: 'historic', hours: '24時間', dayBadge: null, url: 'https://unionstationla.com', insta: '@unionstationla' },
     ],
     movie: [
-      { name: 'Walk of Fame 散策',    desc: 'スターの星をたどってハリウッドを歩く',            area: 'Hollywood',    distance: '車 20分',   mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.3, scene: 'hollywood', hours: '終日', dayBadge: null, url: 'https://walkoffame.com', insta: '@hollywoodwalkoffame' },
-      { name: 'Warner Bros. Studio Tour',desc: '映画スタジオの裏側を見学。要予約',             area: 'Burbank',      distance: '車 30分',   mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.7, scene: 'hollywood', hours: '9:00-16:00', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://www.wbstudiotour.com', insta: '@wbtourhollywood' },
+      { name: 'Walk of Fame 散策',    desc: 'スターの星をたどってハリウッドを歩く',            area: 'Hollywood',    distance: '車 20分',   mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.3, price: '無料', scene: 'hollywood', hours: '終日', dayBadge: null, url: 'https://walkoffame.com', insta: '@hollywoodwalkoffame' },
+      { name: 'Warner Bros. Studio Tour',desc: '映画スタジオの裏側を見学。要予約',             area: 'Burbank',      distance: '車 30分',   mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.7, price: '$70前後', scene: 'hollywood', hours: '9:00-16:00', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://www.wbstudiotour.com', insta: '@wbtourhollywood' },
     ],
     photo: [
-      { name: 'Angels Flight',        desc: '世界最短のケーブルカー。レトロな赤い車体が映える', area: 'DTLA',         distance: '徒歩 8分',  mode: 'walk', icon: Camera, cat: 'photo',   rating: 4.4, scene: 'historic', hours: '6:45-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.angelsflight.org', insta: '@angelsflightrailway' },
-      { name: 'The Last Bookstore',   desc: '本のトンネル「Book Tunnel」とラビリンス書棚',     area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: Camera, cat: 'photo',   rating: 4.7, scene: 'historic', hours: '11:00-20:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://lastbookstorela.com', insta: '@lastbookstorela' },
-      { name: 'Venice Wall Murals',   desc: 'ヴェニスの壁画ストリート。ストリートアートの宝庫', area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.6, scene: 'art', hours: '終日', dayBadge: null, url: 'https://www.google.com/search?q=Venice+Beach+murals+art+walk', insta: null },
+      { name: 'Angels Flight',        desc: '世界最短のケーブルカー。レトロな赤い車体が映える', area: 'DTLA',         distance: '徒歩 8分',  mode: 'walk', icon: Camera, cat: 'photo',   rating: 4.4, price: '$1（片道）', scene: 'historic', hours: '6:45-22:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.angelsflight.org', insta: '@angelsflightrailway' },
+      { name: 'The Last Bookstore',   desc: '本のトンネル「Book Tunnel」とラビリンス書棚',     area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: Camera, cat: 'photo',   rating: 4.7, price: '無料', scene: 'historic', hours: '11:00-20:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://lastbookstorela.com', insta: '@lastbookstorela' },
+      { name: 'Venice Wall Murals',   desc: 'ヴェニスの壁画ストリート。ストリートアートの宝庫', area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.6, price: '無料', scene: 'art', hours: '終日', dayBadge: null, url: 'https://www.google.com/search?q=Venice+Beach+murals+art+walk', insta: null },
     ],
     sports: [
-      { name: 'Dodger Stadium ツアー', desc: 'MLB球場の裏側を見学。ベンチ・記者室・記念室',    area: 'Elysian Park', distance: '車 10分',   mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.7, scene: 'skyline', hours: '10:00-15:00（試合日除く）', dayBadge: { text: '試合日制限', kind: 'closed' }, url: 'https://www.mlb.com/dodgers/ballpark/tours', insta: '@dodgers' },
-      { name: 'Manhattan Beach サーフィン体験', desc: '初心者向けサーフレッスン。ボード・ウェット付き', area: 'South Bay',   distance: '車 30分', mode: 'car', icon: Trophy, cat: 'sports', rating: 4.8, scene: 'beach', hours: '8:00-11:00', dayBadge: { text: '波あり', kind: 'open' }, url: 'https://www.google.com/search?q=Manhattan+Beach+surf+lesson', insta: null },
+      { name: 'Dodger Stadium ツアー', desc: 'MLB球場の裏側を見学。ベンチ・記者室・記念室',    area: 'Elysian Park', distance: '車 10分',   mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.7, price: '$30前後', scene: 'skyline', hours: '10:00-15:00（試合日除く）', dayBadge: { text: '試合日制限', kind: 'closed' }, url: 'https://www.mlb.com/dodgers/ballpark/tours', insta: '@dodgers' },
+      { name: 'Manhattan Beach サーフィン体験', desc: '初心者向けサーフレッスン。ボード・ウェット付き', area: 'South Bay',   distance: '車 30分', mode: 'car', icon: Trophy, cat: 'sports', rating: 4.8, price: '$80~120', scene: 'beach', hours: '8:00-11:00', dayBadge: { text: '波あり', kind: 'open' }, url: 'https://www.google.com/search?q=Manhattan+Beach+surf+lesson', insta: null },
     ],
     experience: [
-      { name: 'Wi Spa Korean Sauna',  desc: '24時間営業の韓国スパ。岩盤浴と汗蒸幕',             area: 'Koreatown',    distance: '車 15分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.3, scene: 'historic', hours: '24時間', dayBadge: { text: '24h営業', kind: 'open' }, url: 'https://www.wispausa.com', insta: '@wi_spa_la' },
-      { name: 'Helicopter LA Tour',   desc: 'ハリウッドサインとDTLAを上空から。45分プラン',    area: '空港発',        distance: '車 25分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.9, scene: 'hollywood', hours: '要予約', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://www.google.com/search?q=Los+Angeles+helicopter+tour', insta: null },
+      { name: 'Wi Spa Korean Sauna',  desc: '24時間営業の韓国スパ。岩盤浴と汗蒸幕',             area: 'Koreatown',    distance: '車 15分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.3, price: '$45前後', scene: 'historic', hours: '24時間', dayBadge: { text: '24h営業', kind: 'open' }, url: 'https://www.wispausa.com', insta: '@wi_spa_la' },
+      { name: 'Helicopter LA Tour',   desc: 'ハリウッドサインとDTLAを上空から。45分プラン',    area: '空港発',        distance: '車 25分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.9, price: '$200~', scene: 'hollywood', hours: '要予約', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://www.google.com/search?q=Los+Angeles+helicopter+tour', insta: null },
     ],
   },
   afternoon: {
     art: [
-      { name: 'LACMA',                desc: 'Urban Lightの前で写真。コレクションも巨大',       area: 'Mid-Wilshire', distance: '車 20分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.5, scene: 'art', hours: '11:00-18:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.lacma.org', insta: '@lacma' },
-      { name: 'Getty Center',         desc: '丘の上の白亜の美術館。建築・庭園・コレクション全部',area: 'Brentwood',   distance: '車 40分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.8, scene: 'historic', hours: '10:00-17:30', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.getty.edu', insta: '@gettymuseum' },
-      { name: 'Academy Museum',       desc: '映画芸術科学アカデミー博物館。映画好き必訪',      area: 'Mid-Wilshire', distance: '車 20分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.6, scene: 'hollywood', hours: '10:00-18:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.academymuseum.org', insta: '@academymuseum' },
+      { name: 'LACMA',                desc: 'Urban Lightの前で写真。コレクションも巨大',       area: 'Mid-Wilshire', distance: '車 20分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.5, price: '$28前後', scene: 'art', hours: '11:00-18:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.lacma.org', insta: '@lacma' },
+      { name: 'Getty Center',         desc: '丘の上の白亜の美術館。建築・庭園・コレクション全部',area: 'Brentwood',   distance: '車 40分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.8, price: '無料（駐車場$25）', scene: 'historic', hours: '10:00-17:30', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.getty.edu', insta: '@gettymuseum' },
+      { name: 'Academy Museum',       desc: '映画芸術科学アカデミー博物館。映画好き必訪',      area: 'Mid-Wilshire', distance: '車 20分',   mode: 'car',  icon: Palette, cat: 'art',     rating: 4.6, price: '$25前後', scene: 'hollywood', hours: '10:00-18:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.academymuseum.org', insta: '@academymuseum' },
     ],
     nature: [
-      { name: 'Huntington Library',   desc: '日本庭園・中国庭園が美しい広大なエステート',      area: 'San Marino',   distance: '車 30分',   mode: 'car',  icon: Mountain, cat: 'nature',  rating: 4.8, scene: 'mountain', hours: '10:00-17:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.huntington.org', insta: '@thehuntingtonlibrary' },
-      { name: 'Griffith Observatory', desc: '昼の見学＆夕方からの夜景も狙える絶景スポット',    area: 'Griffith Park',distance: '車 25分',   mode: 'car',  icon: Mountain, cat: 'nature',  rating: 4.7, scene: 'observatory', hours: '12:00-22:00', dayBadge: { text: '今夜 天体観望会', kind: 'event' }, url: 'https://griffithobservatory.org', insta: '@griffithobservatory' },
+      { name: 'Huntington Library',   desc: '日本庭園・中国庭園が美しい広大なエステート',      area: 'San Marino',   distance: '車 30分',   mode: 'car',  icon: Mountain, cat: 'nature',  rating: 4.8, price: '$29前後', scene: 'mountain', hours: '10:00-17:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://www.huntington.org', insta: '@thehuntingtonlibrary' },
+      { name: 'Griffith Observatory', desc: '昼の見学＆夕方からの夜景も狙える絶景スポット',    area: 'Griffith Park',distance: '車 25分',   mode: 'car',  icon: Mountain, cat: 'nature',  rating: 4.7, price: '無料（駐車場有料）', scene: 'observatory', hours: '12:00-22:00', dayBadge: { text: '今夜 天体観望会', kind: 'event' }, url: 'https://griffithobservatory.org', insta: '@griffithobservatory' },
     ],
     beach: [
-      { name: 'El Matador State Beach',desc: 'マリブの隠れ家ビーチ。岩のアーチが絵になる',      area: 'Malibu',       distance: '車 50分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.7, scene: 'beach', hours: '日の出-日没', dayBadge: null, url: 'https://www.parks.ca.gov/?page_id=619', insta: null },
-      { name: 'Venice Canals 散歩',   desc: 'ヴェネツィア風運河と橋の住宅街をのんびり',        area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.6, scene: 'pier', hours: '終日', dayBadge: null, url: 'https://www.google.com/search?q=Venice+Canals+Los+Angeles', insta: null },
+      { name: 'El Matador State Beach',desc: 'マリブの隠れ家ビーチ。岩のアーチが絵になる',      area: 'Malibu',       distance: '車 50分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.7, price: '駐車場$8前後', scene: 'beach', hours: '日の出-日没', dayBadge: null, url: 'https://www.parks.ca.gov/?page_id=619', insta: null },
+      { name: 'Venice Canals 散歩',   desc: 'ヴェネツィア風運河と橋の住宅街をのんびり',        area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Waves, cat: 'beach',    rating: 4.6, price: '無料', scene: 'pier', hours: '終日', dayBadge: null, url: 'https://www.google.com/search?q=Venice+Canals+Los+Angeles', insta: null },
     ],
     shopping: [
-      { name: 'The Grove',            desc: 'オープンエア・モール。隣接のFarmers Marketも◎',   area: 'Fairfax',      distance: '車 20分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.6, scene: 'shopping', hours: '10:00-21:00', dayBadge: { text: '今日 路上ライブ', kind: 'event' }, url: 'https://thegrovela.com', insta: '@thegrovela' },
-      { name: 'Rodeo Drive',          desc: 'ビバリーヒルズの高級ブランド街',                  area: 'Beverly Hills',distance: '車 25分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.4, scene: 'shopping', hours: '10:00-19:00', dayBadge: null, url: 'https://www.rodeodrive-bh.com', insta: '@rodeodrivebh' },
-      { name: 'Melrose Avenue',       desc: 'ヴィンテージ・ストリート系・壁画スポット',        area: 'WeHo',         distance: '車 20分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.5, scene: 'shopping', hours: '11:00-20:00', dayBadge: null, url: 'https://www.google.com/search?q=Melrose+Avenue+shopping', insta: null },
-      { name: 'Abbot Kinney Blvd',    desc: 'ヴェニスの個性派ショップとカフェが並ぶ通り',      area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.6, scene: 'shopping', hours: '10:00-21:00', dayBadge: null, url: 'https://abbotkinneyblvd.com', insta: '@abbotkinney' },
+      { name: 'The Grove',            desc: 'オープンエア・モール。隣接のFarmers Marketも◎',   area: 'Fairfax',      distance: '車 20分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.6, price: '無料（散策）', scene: 'shopping', hours: '10:00-21:00', dayBadge: { text: '今日 路上ライブ', kind: 'event' }, url: 'https://thegrovela.com', insta: '@thegrovela' },
+      { name: 'Rodeo Drive',          desc: 'ビバリーヒルズの高級ブランド街',                  area: 'Beverly Hills',distance: '車 25分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.4, price: '無料（散策）', scene: 'shopping', hours: '10:00-19:00', dayBadge: null, url: 'https://www.rodeodrive-bh.com', insta: '@rodeodrivebh' },
+      { name: 'Melrose Avenue',       desc: 'ヴィンテージ・ストリート系・壁画スポット',        area: 'WeHo',         distance: '車 20分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.5, price: '無料（散策）', scene: 'shopping', hours: '11:00-20:00', dayBadge: null, url: 'https://www.google.com/search?q=Melrose+Avenue+shopping', insta: null },
+      { name: 'Abbot Kinney Blvd',    desc: 'ヴェニスの個性派ショップとカフェが並ぶ通り',      area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: ShoppingBag, cat: 'shopping',rating: 4.6, price: '無料（散策）', scene: 'shopping', hours: '10:00-21:00', dayBadge: null, url: 'https://abbotkinneyblvd.com', insta: '@abbotkinney' },
     ],
     themepark: [
-      { name: 'Universal Studios Hollywood',desc: 'ハリポタ、マリオ、スタジオツアーを1日で',   area: 'Universal City',distance:'車 25分',  mode: 'car',  icon: Ticket, cat: 'themepark',rating: 4.7, scene: 'themepark', hours: '9:00-22:00', dayBadge: { text: '夜の延長OPEN', kind: 'event' }, url: 'https://www.universalstudioshollywood.com', insta: '@unistudios' },
-      { name: 'Disneyland Park',      desc: '元祖ディズニーランドへ日帰り遠征',                area: 'Anaheim',      distance: '車 45分',   mode: 'car',  icon: Ticket, cat: 'themepark',rating: 4.8, scene: 'themepark', hours: '8:00-24:00', dayBadge: { text: '花火 21:30', kind: 'event' }, url: 'https://disneyland.disney.go.com', insta: '@disneyland' },
-      { name: 'Six Flags Magic Mountain',desc: '絶叫マシンの天国。コースター好きはマスト',     area: 'Valencia',     distance: '車 1時間',  mode: 'car',  icon: Ticket, cat: 'themepark',rating: 4.5, scene: 'themepark', hours: '10:30-22:00', dayBadge: null, url: 'https://www.sixflags.com/magicmountain', insta: '@sixflagsmagicmountain' },
+      { name: 'Universal Studios Hollywood',desc: 'ハリポタ、マリオ、スタジオツアーを1日で',   area: 'Universal City',distance:'車 25分',  mode: 'car',  icon: Ticket, cat: 'themepark',rating: 4.7, price: '$109~', scene: 'themepark', hours: '9:00-22:00', dayBadge: { text: '夜の延長OPEN', kind: 'event' }, url: 'https://www.universalstudioshollywood.com', insta: '@unistudios' },
+      { name: 'Disneyland Park',      desc: '元祖ディズニーランドへ日帰り遠征',                area: 'Anaheim',      distance: '車 45分',   mode: 'car',  icon: Ticket, cat: 'themepark',rating: 4.8, price: '$104~', scene: 'themepark', hours: '8:00-24:00', dayBadge: { text: '花火 21:30', kind: 'event' }, url: 'https://disneyland.disney.go.com', insta: '@disneyland' },
+      { name: 'Six Flags Magic Mountain',desc: '絶叫マシンの天国。コースター好きはマスト',     area: 'Valencia',     distance: '車 1時間',  mode: 'car',  icon: Ticket, cat: 'themepark',rating: 4.5, price: '$70~', scene: 'themepark', hours: '10:30-22:00', dayBadge: null, url: 'https://www.sixflags.com/magicmountain', insta: '@sixflagsmagicmountain' },
     ],
     movie: [
-      { name: 'TCL Chinese Theatre',  desc: 'スターの手形足型と歴史的劇場',                    area: 'Hollywood',    distance: '車 20分',   mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.5, scene: 'hollywood', hours: '10:00-23:00', dayBadge: { text: 'プレミア試写あり', kind: 'event' }, url: 'https://www.tclchinesetheatres.com', insta: '@tclchinesetheatre' },
-      { name: 'Griffith Observatory（La La Land）', desc: '「La La Land」のロケ地。LA市街を見下ろす', area: 'Griffith Park',distance: '車 25分', mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.7, scene: 'observatory', hours: '12:00-22:00', dayBadge: null, url: 'https://griffithobservatory.org', insta: '@griffithobservatory' },
+      { name: 'TCL Chinese Theatre',  desc: 'スターの手形足型と歴史的劇場',                    area: 'Hollywood',    distance: '車 20分',   mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.5, price: '無料（鑑賞別）', scene: 'hollywood', hours: '10:00-23:00', dayBadge: { text: 'プレミア試写あり', kind: 'event' }, url: 'https://www.tclchinesetheatres.com', insta: '@tclchinesetheatre' },
+      { name: 'Griffith Observatory（La La Land）', desc: '「La La Land」のロケ地。LA市街を見下ろす', area: 'Griffith Park',distance: '車 25分', mode: 'car',  icon: Clapperboard, cat: 'movie',rating: 4.7, price: '無料', scene: 'observatory', hours: '12:00-22:00', dayBadge: null, url: 'https://griffithobservatory.org', insta: '@griffithobservatory' },
     ],
     history: [
-      { name: 'The Last Bookstore',   desc: 'DTLAの名物書店。本のトンネルが写真スポット',      area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: BookOpen, cat: 'history',rating: 4.7, scene: 'historic', hours: '11:00-20:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://lastbookstorela.com', insta: '@lastbookstorela' },
-      { name: 'Little Tokyo 散策',    desc: 'リトル東京の小路と日系雑貨店をめぐる',            area: 'Little Tokyo', distance: '徒歩 15分', mode: 'walk', icon: Building2, cat: 'history',rating: 4.6, scene: 'little_tokyo', hours: '終日', dayBadge: null, url: 'https://www.visitlittletokyo.com', insta: '@littletokyola' },
-      { name: 'Arts District 散策',   desc: '倉庫街リノベの壁画とカフェ・ギャラリー',          area: 'Arts District',distance: '車 5分',    mode: 'car',  icon: Building2, cat: 'history',rating: 4.5, scene: 'historic', hours: '終日', dayBadge: null, url: 'https://artsdistrictla.org', insta: '@artsdistrictla' },
+      { name: 'The Last Bookstore',   desc: 'DTLAの名物書店。本のトンネルが写真スポット',      area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: BookOpen, cat: 'history',rating: 4.7, price: '無料', scene: 'historic', hours: '11:00-20:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://lastbookstorela.com', insta: '@lastbookstorela' },
+      { name: 'Little Tokyo 散策',    desc: 'リトル東京の小路と日系雑貨店をめぐる',            area: 'Little Tokyo', distance: '徒歩 15分', mode: 'walk', icon: Building2, cat: 'history',rating: 4.6, price: '無料', scene: 'little_tokyo', hours: '終日', dayBadge: null, url: 'https://www.visitlittletokyo.com', insta: '@littletokyola' },
+      { name: 'Arts District 散策',   desc: '倉庫街リノベの壁画とカフェ・ギャラリー',          area: 'Arts District',distance: '車 5分',    mode: 'car',  icon: Building2, cat: 'history',rating: 4.5, price: '無料', scene: 'historic', hours: '終日', dayBadge: null, url: 'https://artsdistrictla.org', insta: '@artsdistrictla' },
     ],
     photo: [
-      { name: 'Urban Light @ LACMA',  desc: '202本の街灯のインスタレーション。夕方が一番映える',area: 'Mid-Wilshire', distance: '車 20分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.7, scene: 'art', hours: '終日（点灯は日没後）', dayBadge: { text: '日没後点灯', kind: 'event' }, url: 'https://www.lacma.org/art/installation/urban-light', insta: '@lacma' },
-      { name: 'Pink Wall（Paul Smith）',desc: 'ピンク色の壁。インスタの定番フォトスポット',     area: 'Melrose',      distance: '車 20分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.2, scene: 'shopping', hours: '終日（店舗 11:00-18:00）', dayBadge: null, url: 'https://www.google.com/search?q=Paul+Smith+Pink+Wall+Melrose', insta: '@paulsmithdesign' },
-      { name: 'Salt & Straw Venice', desc: 'ピンク壁とアイスクリーム。並んでも撮りたい',      area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.6, scene: 'shopping', hours: '11:00-23:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://saltandstraw.com', insta: '@saltandstraw' },
-      { name: 'Vista Theater',        desc: 'クエンティン・タランティーノ所有の映画館の外観',   area: 'Los Feliz',    distance: '車 20分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.6, scene: 'hollywood', hours: '上映時のみ', dayBadge: null, url: 'https://www.google.com/search?q=Vista+Theater+Los+Feliz', insta: null },
+      { name: 'Urban Light @ LACMA',  desc: '202本の街灯のインスタレーション。夕方が一番映える',area: 'Mid-Wilshire', distance: '車 20分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.7, price: '無料', scene: 'art', hours: '終日（点灯は日没後）', dayBadge: { text: '日没後点灯', kind: 'event' }, url: 'https://www.lacma.org/art/installation/urban-light', insta: '@lacma' },
+      { name: 'Pink Wall（Paul Smith）',desc: 'ピンク色の壁。インスタの定番フォトスポット',     area: 'Melrose',      distance: '車 20分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.2, price: '無料', scene: 'shopping', hours: '終日（店舗 11:00-18:00）', dayBadge: null, url: 'https://www.google.com/search?q=Paul+Smith+Pink+Wall+Melrose', insta: '@paulsmithdesign' },
+      { name: 'Salt & Straw Venice', desc: 'ピンク壁とアイスクリーム。並んでも撮りたい',      area: 'Venice',       distance: '車 35分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.6, price: '~$8', scene: 'shopping', hours: '11:00-23:00', dayBadge: { text: '営業中', kind: 'open' }, url: 'https://saltandstraw.com', insta: '@saltandstraw' },
+      { name: 'Vista Theater',        desc: 'クエンティン・タランティーノ所有の映画館の外観',   area: 'Los Feliz',    distance: '車 20分',   mode: 'car',  icon: Camera, cat: 'photo',   rating: 4.6, price: '鑑賞料による', scene: 'hollywood', hours: '上映時のみ', dayBadge: null, url: 'https://www.google.com/search?q=Vista+Theater+Los+Feliz', insta: null },
     ],
     sports: [
-      { name: 'Crypto.com Arena 見学', desc: 'Lakers/Clippers/Kingsの本拠地。Star Plazaも',     area: 'DTLA',         distance: '車 5分',    mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.5, scene: 'skyline', hours: 'イベントによる', dayBadge: { text: '今夜 試合あり', kind: 'event' }, url: 'https://www.cryptoarena.com', insta: '@cryptocomarena' },
-      { name: 'Rose Bowl Stadium',    desc: 'パサデナの伝統的スタジアム。UCLAサッカーの聖地',  area: 'Pasadena',     distance: '車 30分',   mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.7, scene: 'historic', hours: 'イベントによる', dayBadge: null, url: 'https://rosebowlstadium.com', insta: '@rosebowlstadium' },
-      { name: 'SoFi Stadium ツアー',  desc: 'Rams/Chargersの最新スタジアム。建築自体が見もの', area: 'Inglewood',    distance: '車 25分',   mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.6, scene: 'themepark', hours: '10:00-15:00', dayBadge: null, url: 'https://www.sofistadium.com', insta: '@sofistadium' },
+      { name: 'Crypto.com Arena 見学', desc: 'Lakers/Clippers/Kingsの本拠地。Star Plazaも',     area: 'DTLA',         distance: '車 5分',    mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.5, price: '公演による', scene: 'skyline', hours: 'イベントによる', dayBadge: { text: '今夜 試合あり', kind: 'event' }, url: 'https://www.cryptoarena.com', insta: '@cryptocomarena' },
+      { name: 'Rose Bowl Stadium',    desc: 'パサデナの伝統的スタジアム。UCLAサッカーの聖地',  area: 'Pasadena',     distance: '車 30分',   mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.7, price: 'イベントによる', scene: 'historic', hours: 'イベントによる', dayBadge: null, url: 'https://rosebowlstadium.com', insta: '@rosebowlstadium' },
+      { name: 'SoFi Stadium ツアー',  desc: 'Rams/Chargersの最新スタジアム。建築自体が見もの', area: 'Inglewood',    distance: '車 25分',   mode: 'car',  icon: Trophy, cat: 'sports',  rating: 4.6, price: '$45前後', scene: 'themepark', hours: '10:00-15:00', dayBadge: null, url: 'https://www.sofistadium.com', insta: '@sofistadium' },
     ],
     experience: [
-      { name: 'クッキングクラス（メキシカン）', desc: '本場の料理人と作るタコス・サルサ・モレ', area: 'Boyle Heights',distance: '車 10分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.8, scene: 'food_taco', hours: '14:00-17:00', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://www.google.com/search?q=Los+Angeles+mexican+cooking+class', insta: null },
-      { name: 'E-Bike Tour（DTLA）',  desc: '電動アシスト自転車で2時間DTLAをガイドツアー',    area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: Compass, cat: 'experience',rating: 4.7, scene: 'skyline', hours: '10:00 / 14:00', dayBadge: null, url: 'https://www.google.com/search?q=Los+Angeles+ebike+tour', insta: null },
-      { name: 'Pottery Workshop',     desc: '陶芸ワークショップ。1日でカップやボウルを作る',    area: 'Echo Park',    distance: '車 10分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.8, scene: 'art', hours: '13:00-16:00', dayBadge: null, url: 'https://www.google.com/search?q=Los+Angeles+pottery+workshop', insta: null },
-      { name: 'Old Town Music Hall', desc: '1920年代の映画を生伴奏で。週末限定の貴重な体験',  area: 'El Segundo',   distance: '車 35分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.9, scene: 'hollywood', hours: '週末 14:30 / 20:00', dayBadge: { text: '週末限定', kind: 'event' }, url: 'https://oldtownmusichall.org', insta: null },
+      { name: 'クッキングクラス（メキシカン）', desc: '本場の料理人と作るタコス・サルサ・モレ', area: 'Boyle Heights',distance: '車 10分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.8, price: '$70前後', scene: 'food_taco', hours: '14:00-17:00', dayBadge: { text: '予約必須', kind: 'hot' }, url: 'https://www.google.com/search?q=Los+Angeles+mexican+cooking+class', insta: null },
+      { name: 'E-Bike Tour（DTLA）',  desc: '電動アシスト自転車で2時間DTLAをガイドツアー',    area: 'DTLA',         distance: '徒歩 5分',  mode: 'walk', icon: Compass, cat: 'experience',rating: 4.7, price: '$60前後', scene: 'skyline', hours: '10:00 / 14:00', dayBadge: null, url: 'https://www.google.com/search?q=Los+Angeles+ebike+tour', insta: null },
+      { name: 'Pottery Workshop',     desc: '陶芸ワークショップ。1日でカップやボウルを作る',    area: 'Echo Park',    distance: '車 10分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.8, price: '$50前後', scene: 'art', hours: '13:00-16:00', dayBadge: null, url: 'https://www.google.com/search?q=Los+Angeles+pottery+workshop', insta: null },
+      { name: 'Old Town Music Hall', desc: '1920年代の映画を生伴奏で。週末限定の貴重な体験',  area: 'El Segundo',   distance: '車 35分',   mode: 'car',  icon: Compass, cat: 'experience',rating: 4.9, price: '$10前後', scene: 'hollywood', hours: '週末 14:30 / 20:00', dayBadge: { text: '週末限定', kind: 'event' }, url: 'https://oldtownmusichall.org', insta: null },
     ],
   },
   evening: [
-    { name: 'Griffith Observatory 夜景',desc: 'LAの夜景は天文台から。日没後がベスト',           area: 'Griffith Park',distance: '車 25分',   mode: 'car',  icon: Moon, cat: 'movie',    rating: 4.8, scene: 'night_city', hours: '12:00-22:00', dayBadge: { text: '天体観望会', kind: 'event' }, url: 'https://griffithobservatory.org', insta: '@griffithobservatory' },
-    { name: 'OUE Skyspace（DTLA夜景）',desc: '高層ビル屋上の展望台とガラススライダー',          area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Moon, cat: 'movie',    rating: 4.4, scene: 'night_city', hours: '10:00-22:00', dayBadge: null, url: 'https://oue-skyspace.com', insta: '@oueskyspacela' },
-    { name: 'Hollywood Bowl コンサート',desc: '夏季開催の野外コンサート。ピクニックスタイル',   area: 'Hollywood',    distance: '車 25分',   mode: 'car',  icon: Music, cat: 'movie',   rating: 4.7, scene: 'music', hours: '19:30開演', dayBadge: { text: '今夜 Yo-Yo Ma', kind: 'event' }, url: 'https://www.hollywoodbowl.com', insta: '@hollywoodbowl' },
-    { name: 'Walt Disney Concert Hall', desc: '夜の外観ライトアップとコンサート',                area: 'DTLA',         distance: '徒歩 15分', mode: 'walk', icon: Music, cat: 'history', rating: 4.7, scene: 'music', hours: '20:00開演', dayBadge: { text: 'LAフィル公演', kind: 'event' }, url: 'https://www.laphil.com/visit/wdch', insta: '@laphil' },
-    { name: 'Sunset Strip でドリンク',  desc: 'WeHoのバーや音楽ハコ巡り',                       area: 'WeHo',         distance: '車 25分',   mode: 'car',  icon: Wine, cat: 'food',     rating: 4.4, scene: 'night_city', hours: '18:00-2:00', dayBadge: null, url: 'https://www.google.com/search?q=Sunset+Strip+bars', insta: null },
-    { name: 'Santa Monica Pier の夕陽', desc: '観覧車と夕陽の太平洋',                           area: 'Santa Monica', distance: '車 30分',   mode: 'car',  icon: Sunset, cat: 'beach',  rating: 4.7, scene: 'pier', hours: '6:00-25:00', dayBadge: { text: '夜花火 21:00', kind: 'event' }, url: 'https://www.santamonicapier.org', insta: '@santamonicapier' },
-    { name: 'Dodgers Game 観戦',         desc: 'MLBドジャース戦。LA市民の聖地で熱狂',           area: 'Elysian Park', distance: '車 10分',   mode: 'car',  icon: Trophy, cat: 'sports', rating: 4.8, scene: 'skyline', hours: '19:10開始', dayBadge: { text: '今夜 vs Giants', kind: 'event' }, url: 'https://www.mlb.com/dodgers', insta: '@dodgers' },
-    { name: 'Speakeasy バー巡り',        desc: '隠れ家バーで本物のクラフトカクテルを体験',       area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Compass, cat: 'experience',rating: 4.7, scene: 'night_city', hours: '19:00-2:00', dayBadge: null, url: 'https://www.google.com/search?q=Los+Angeles+speakeasy+bar', insta: null },
+    { name: 'Griffith Observatory 夜景',desc: 'LAの夜景は天文台から。日没後がベスト',           area: 'Griffith Park',distance: '車 25分',   mode: 'car',  icon: Moon, cat: 'movie',    rating: 4.8, price: '無料', scene: 'night_city', hours: '12:00-22:00', dayBadge: { text: '天体観望会', kind: 'event' }, url: 'https://griffithobservatory.org', insta: '@griffithobservatory' },
+    { name: 'OUE Skyspace（DTLA夜景）',desc: '高層ビル屋上の展望台とガラススライダー',          area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Moon, cat: 'movie',    rating: 4.4, price: '$25前後', scene: 'night_city', hours: '10:00-22:00', dayBadge: null, url: 'https://oue-skyspace.com', insta: '@oueskyspacela' },
+    { name: 'Hollywood Bowl コンサート',desc: '夏季開催の野外コンサート。ピクニックスタイル',   area: 'Hollywood',    distance: '車 25分',   mode: 'car',  icon: Music, cat: 'movie',   rating: 4.7, price: '公演による', scene: 'music', hours: '19:30開演', dayBadge: { text: '今夜 Yo-Yo Ma', kind: 'event' }, url: 'https://www.hollywoodbowl.com', insta: '@hollywoodbowl' },
+    { name: 'Walt Disney Concert Hall', desc: '夜の外観ライトアップとコンサート',                area: 'DTLA',         distance: '徒歩 15分', mode: 'walk', icon: Music, cat: 'history', rating: 4.7, price: '無料（外観/ツアー別）', scene: 'music', hours: '20:00開演', dayBadge: { text: 'LAフィル公演', kind: 'event' }, url: 'https://www.laphil.com/visit/wdch', insta: '@laphil' },
+    { name: 'Sunset Strip でドリンク',  desc: 'WeHoのバーや音楽ハコ巡り',                       area: 'WeHo',         distance: '車 25分',   mode: 'car',  icon: Wine, cat: 'food',     rating: 4.4, price: 'ドリンク$15~', scene: 'night_city', hours: '18:00-2:00', dayBadge: null, url: 'https://www.google.com/search?q=Sunset+Strip+bars', insta: null },
+    { name: 'Santa Monica Pier の夕陽', desc: '観覧車と夕陽の太平洋',                           area: 'Santa Monica', distance: '車 30分',   mode: 'car',  icon: Sunset, cat: 'beach',  rating: 4.7, price: '無料', scene: 'pier', hours: '6:00-25:00', dayBadge: { text: '夜花火 21:00', kind: 'event' }, url: 'https://www.santamonicapier.org', insta: '@santamonicapier' },
+    { name: 'Dodgers Game 観戦',         desc: 'MLBドジャース戦。LA市民の聖地で熱狂',           area: 'Elysian Park', distance: '車 10分',   mode: 'car',  icon: Trophy, cat: 'sports', rating: 4.8, price: '$30~150', scene: 'skyline', hours: '19:10開始', dayBadge: { text: '今夜 vs Giants', kind: 'event' }, url: 'https://www.mlb.com/dodgers', insta: '@dodgers' },
+    { name: 'Speakeasy バー巡り',        desc: '隠れ家バーで本物のクラフトカクテルを体験',       area: 'DTLA',         distance: '徒歩 10分', mode: 'walk', icon: Compass, cat: 'experience',rating: 4.7, price: 'ドリンク$15~', scene: 'night_city', hours: '19:00-2:00', dayBadge: null, url: 'https://www.google.com/search?q=Los+Angeles+speakeasy+bar', insta: null },
   ],
 };
 
 // ============ 今日のイベント ============
 const TODAYS_EVENTS = [
-  { time: '19:30', title: 'Yo-Yo Ma クラシック演奏会', venue: 'Hollywood Bowl',         scene: 'music',       cat: 'movie',     ticketsLeft: 'あと わずか',     url: 'https://www.hollywoodbowl.com',                  insta: '@hollywoodbowl' },
-  { time: '21:00', title: 'サマー花火大会',           venue: 'Santa Monica Pier',      scene: 'pier',        cat: 'beach',     ticketsLeft: '無料',           url: 'https://www.santamonicapier.org',                insta: '@santamonicapier' },
-  { time: '19:10', title: 'Dodgers vs Giants',        venue: 'Dodger Stadium',         scene: 'skyline',     cat: 'sports',    ticketsLeft: '一塁側 残席あり', url: 'https://www.mlb.com/dodgers',                    insta: '@dodgers' },
-  { time: '20:00', title: 'LAフィル「夏の夜」',        venue: 'Walt Disney Concert Hall', scene: 'music',     cat: 'history',   ticketsLeft: '残席わずか',     url: 'https://www.laphil.com',                         insta: '@laphil' },
-  { time: '終日',  title: '特別展: Kusama "New Works"', venue: 'The Broad',              scene: 'art',         cat: 'art',       ticketsLeft: '当日整理券',     url: 'https://www.thebroad.org',                       insta: '@thebroadmuseum' },
-  { time: '21:30', title: 'ディズニーランド花火',       venue: 'Disneyland Park',        scene: 'themepark',   cat: 'themepark', ticketsLeft: '入園券要',       url: 'https://disneyland.disney.go.com',               insta: '@disneyland' },
-  { time: '17:00', title: 'ファーマーズマーケット',     venue: 'The Grove',              scene: 'shopping',    cat: 'shopping',  ticketsLeft: '入場無料',       url: 'https://thegrovela.com',                         insta: '@thegrovela' },
-  { time: '20:30', title: '夜間天体観望会',             venue: 'Griffith Observatory',   scene: 'observatory', cat: 'nature',    ticketsLeft: '無料',           url: 'https://griffithobservatory.org',                insta: '@griffithobservatory' },
+  { time: '19:30', title: 'Yo-Yo Ma クラシック演奏会', venue: 'Hollywood Bowl',         scene: 'music',       cat: 'movie',     ticketsLeft: 'あと わずか',     price: '$40~150',     url: 'https://www.hollywoodbowl.com',                  insta: '@hollywoodbowl' },
+  { time: '21:00', title: 'サマー花火大会',           venue: 'Santa Monica Pier',      scene: 'pier',        cat: 'beach',     ticketsLeft: '無料',           price: '無料',         url: 'https://www.santamonicapier.org',                insta: '@santamonicapier' },
+  { time: '19:10', title: 'Dodgers vs Giants',        venue: 'Dodger Stadium',         scene: 'skyline',     cat: 'sports',    ticketsLeft: '一塁側 残席あり', price: '$30~150',     url: 'https://www.mlb.com/dodgers',                    insta: '@dodgers' },
+  { time: '20:00', title: 'LAフィル「夏の夜」',        venue: 'Walt Disney Concert Hall', scene: 'music',     cat: 'history',   ticketsLeft: '残席わずか',     price: '$50~120',     url: 'https://www.laphil.com',                         insta: '@laphil' },
+  { time: '終日',  title: '特別展: Kusama "New Works"', venue: 'The Broad',              scene: 'art',         cat: 'art',       ticketsLeft: '当日整理券',     price: '$20前後',      url: 'https://www.thebroad.org',                       insta: '@thebroadmuseum' },
+  { time: '21:30', title: 'ディズニーランド花火',       venue: 'Disneyland Park',        scene: 'themepark',   cat: 'themepark', ticketsLeft: '入園券要',       price: '$104~',       url: 'https://disneyland.disney.go.com',               insta: '@disneyland' },
+  { time: '17:00', title: 'ファーマーズマーケット',     venue: 'The Grove',              scene: 'shopping',    cat: 'shopping',  ticketsLeft: '入場無料',       price: '無料',         url: 'https://thegrovela.com',                         insta: '@thegrovela' },
+  { time: '20:30', title: '夜間天体観望会',             venue: 'Griffith Observatory',   scene: 'observatory', cat: 'nature',    ticketsLeft: '無料',           price: '無料',         url: 'https://griffithobservatory.org',                insta: '@griffithobservatory' },
 ];
 
 // ============ LA INFO（基本データ・移動・季節など） ============
@@ -2180,7 +2180,7 @@ function ArticleCard({ idx, slot }) {
         {act.desc}
       </p>
 
-      <div className="mt-4 flex items-center gap-4 text-[10.5px]" style={{ color: C.ink3, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
+      <div className="mt-4 flex items-center gap-4 text-[10.5px] flex-wrap" style={{ color: C.ink3, fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>
         <span className="inline-flex items-center gap-1">
           <Star size={10} style={{ color: C.gold, fill: C.gold }} />
           <span style={{ color: C.ink2, fontWeight: 700 }}>{act.rating.toFixed(1)}</span>
@@ -2192,6 +2192,15 @@ function ArticleCard({ idx, slot }) {
         </span>
         <span style={{ color: C.line }}>|</span>
         <span>{act.area}</span>
+        {act.price && (
+          <>
+            <span style={{ color: C.line }}>|</span>
+            <span className="inline-flex items-center gap-1" style={{ color: C.moss, fontWeight: 700 }}>
+              <Banknote size={11} strokeWidth={1.8} />
+              {act.price}
+            </span>
+          </>
+        )}
       </div>
 
       <LinkRow url={act.url} insta={act.insta} name={act.name} isFood={act.cat === 'food'} />
@@ -2232,8 +2241,15 @@ function EventArticle({ ev, idx }) {
           </span>
         )}
       </div>
-      <div className="mt-3 inline-block px-2 py-0.5 text-[10px] font-bold" style={{ background: C.paper, color: C.ink2, border: `1px solid ${C.line}`, letterSpacing: '0.08em' }}>
-        {ev.ticketsLeft}
+      <div className="mt-3 flex items-center gap-2 flex-wrap">
+        <span className="inline-block px-2 py-0.5 text-[10px] font-bold" style={{ background: C.paper, color: C.ink2, border: `1px solid ${C.line}`, letterSpacing: '0.08em' }}>
+          {ev.ticketsLeft}
+        </span>
+        {ev.price && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold" style={{ background: C.paper, color: C.moss, border: `1px solid ${C.line}`, letterSpacing: '0.05em' }}>
+            <Banknote size={10} strokeWidth={1.8} />目安 {ev.price}
+          </span>
+        )}
       </div>
 
       <LinkRow url={ev.url} insta={ev.insta} name={ev.title} />
@@ -2274,12 +2290,20 @@ function SpotArticle({ act, idx }) {
           <p className="text-[11px] leading-[1.7] line-clamp-3" style={{ color: C.ink2 }}>
             {act.desc}
           </p>
-          <div className="mt-2 flex items-center gap-2 text-[10px]" style={{ color: C.ink3, letterSpacing: '0.05em' }}>
+          <div className="mt-2 flex items-center gap-2 text-[10px] flex-wrap" style={{ color: C.ink3, letterSpacing: '0.05em' }}>
             <Star size={9} style={{ color: C.gold, fill: C.gold }} />
             <span style={{ color: C.ink2 }}>{act.rating.toFixed(1)}</span>
             <span style={{ color: C.line }}>·</span>
             <span>{act.distance}</span>
             {act.hours && (<><span style={{ color: C.line }}>·</span><span>{act.hours}</span></>)}
+            {act.price && (
+              <>
+                <span style={{ color: C.line }}>·</span>
+                <span className="inline-flex items-center gap-0.5" style={{ color: C.moss, fontWeight: 700 }}>
+                  <Banknote size={10} strokeWidth={1.8} />{act.price}
+                </span>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -2893,7 +2917,7 @@ function TripPlannerInner() {
           >
             <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold">
               <Home size={12} strokeWidth={1.8} />
-              <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>宿の概要を見る（Airbnb）</span>
+              <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>拠点の画像を見る（Airbnb）</span>
             </span>
             <ExternalLink size={11} strokeWidth={1.8} style={{ color: C.ink3 }} />
           </a>
@@ -2902,6 +2926,44 @@ function TripPlannerInner() {
 
       {/* ============ お気に入り一覧（1件以上で表示） ============ */}
       <FavoritesSection />
+
+      {/* ============ 使い方ガイド ============ */}
+      <section className="px-6 py-10" style={{ background: C.paper, borderBottom: `1px solid ${C.line}` }}>
+        <div className="text-[9.5px] font-bold tracking-[0.4em] mb-2 flex items-center gap-2" style={{ color: C.accent }}>
+          <Info size={12} strokeWidth={1.8} />
+          <span>HOW TO USE — 使い方</span>
+        </div>
+        <p className="text-[11.5px] leading-[1.9] mb-5" style={{ color: C.ink2, letterSpacing: '0.03em' }}>
+          日付と興味を選んで「Click Here！」を押すだけ。今日のロサンゼルスの楽しみ方を提案します。
+        </p>
+        <div className="space-y-3">
+          {[
+            { en: 'DATE',        jp: '日付をえらぶ',         desc: '「DATE」で訪れる日を選べます。' },
+            { en: 'INTERESTS',   jp: '興味をえらぶ',         desc: '「INTERESTS」で見たいジャンル（グルメ・アート・ビーチなど）を選べます。複数選択OK。' },
+            { en: 'Click Here！', jp: '検索をはじめる',       desc: '「Click Here！ワクワクをさがそう！」を押すと提案がはじまります。' },
+            { en: 'PLAN',        jp: '1日の流れで見る',      desc: '「PLAN」は朝から夜までの1日の流れで組み立てて表示します。' },
+            { en: 'DISCOVER',    jp: 'スポットを一覧で見る', desc: '「DISCOVER」は条件に合うスポットを一覧で並べて表示します。' },
+            { en: 'LINKS',       jp: '詳しく調べる',         desc: '各スポットの「日本語で詳しく見る」はGoogle検索へ。公式サイトやSNSへのリンクも付いています。' },
+            { en: 'AREAS',       jp: 'エリアを知る',         desc: '下部の「ロサンゼルスのかたち」を開くと、エリアごとの見どころスポットや関連記事・動画を掲載しています。' },
+            { en: 'GUIDES',      jp: 'ガイドで深掘り',       desc: '最下部の「GUIDES — 日本語で読めるLAガイド」で、信頼できる日本語の情報サイトをまとめています。' },
+            { en: 'PRICE',       jp: '料金はあくまで目安',   desc: '各スポットに表示される料金（$表記）は目安です。時期・メニュー・席種で変わるため、正確な料金は公式サイトでご確認ください。' },
+          ].map((step, i) => (
+            <div key={i} className="flex items-start gap-3 pb-3" style={{ borderBottom: `1px dotted ${C.line}` }}>
+              <span className="shrink-0 text-[9px] font-bold px-2 py-1 mt-0.5" style={{ background: C.ink, color: C.paper, fontFamily: FONT_SERIF_EN, fontStyle: 'italic', letterSpacing: '0.05em', minWidth: 64, textAlign: 'center' }}>
+                {step.en}
+              </span>
+              <div className="flex-1 min-w-0">
+                <div style={{ fontFamily: FONT_MINCHO, fontSize: 13, color: C.ink, fontWeight: 500, letterSpacing: '0.04em' }}>
+                  {step.jp}
+                </div>
+                <div className="mt-1 text-[11px] leading-relaxed" style={{ color: C.ink2 }}>
+                  {step.desc}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ============ TODAY / 入力 ============ */}
       <section className="pt-14 pb-10">
@@ -2998,7 +3060,7 @@ function TripPlannerInner() {
               opacity: generating ? 0.6 : 1,
             }}
           >
-            <span>{generating ? '読み込み中…' : (data ? '別のプランやスポットを見る' : 'プランやスポットを見る')}</span>
+            <span>{generating ? '読み込み中…' : (data ? 'もう一度さがす（別のプラン）' : 'Click Here！ワクワクをさがそう！')}</span>
             <ArrowRight size={14} strokeWidth={1.5} />
           </button>
           <div className="text-center text-[9.5px] mt-3 font-bold tracking-[0.3em]" style={{ color: C.ink3, fontFamily: FONT_SERIF_EN, fontStyle: 'italic' }}>
