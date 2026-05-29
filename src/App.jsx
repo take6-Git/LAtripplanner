@@ -42,6 +42,7 @@ const HOME_BASE = {
   address: '400 S Broadway, Los Angeles, CA 90013',
   area: 'Downtown LA',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pala+on+Broadway+400+S+Broadway+Los+Angeles+CA+90013',
+  airbnbUrl: 'https://www.airbnb.jp/rooms/590725126714089771',
 };
 
 // ============ 興味カテゴリー（11種） ============
@@ -2848,38 +2849,55 @@ function TripPlannerInner() {
       {/* ============ 拠点情報 ============ */}
       <section className="px-6 py-8" style={{ borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}`, background: C.paper }}>
         <div className="text-[9px] font-bold tracking-[0.4em] mb-3" style={{ color: C.ink3 }}>YOUR BASE — 拠点</div>
-        <a
-          href={HOME_BASE.mapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-opacity"
-          style={{ textDecoration: 'none' }}
-        >
-          <div className="flex items-start gap-4">
-            <div className="shrink-0">
-              <div className="w-12 h-12 flex items-center justify-center" style={{ background: C.ink, color: C.paper }}>
-                <Home size={18} strokeWidth={1.5} />
-              </div>
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-[18px] leading-tight" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.04em' }}>
-                {HOME_BASE.name}
-              </h3>
-              <div className="text-[10px] mt-1" style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', color: C.ink3, letterSpacing: '0.1em' }}>
-                {HOME_BASE.nameEn}
-              </div>
-              <div className="mt-3 text-[11px] leading-relaxed" style={{ color: C.ink2 }}>
-                {HOME_BASE.address}<br />
-                <span style={{ color: C.ink3 }}>{HOME_BASE.area}</span>
-              </div>
-              <div className="mt-3 inline-flex items-center gap-1.5 text-[10.5px] font-semibold" style={{ color: C.accent }}>
-                <MapPin size={11} strokeWidth={1.8} />
-                <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>タップでGoogle Mapで開く</span>
-                <ExternalLink size={10} strokeWidth={1.8} />
-              </div>
+        <div className="flex items-start gap-4">
+          <div className="shrink-0">
+            <div className="w-12 h-12 flex items-center justify-center" style={{ background: C.ink, color: C.paper }}>
+              <Home size={18} strokeWidth={1.5} />
             </div>
           </div>
-        </a>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-[18px] leading-tight" style={{ fontFamily: FONT_MINCHO, fontWeight: 500, color: C.ink, letterSpacing: '0.04em' }}>
+              {HOME_BASE.name}
+            </h3>
+            <div className="text-[10px] mt-1" style={{ fontFamily: FONT_SERIF_EN, fontStyle: 'italic', color: C.ink3, letterSpacing: '0.1em' }}>
+              {HOME_BASE.nameEn}
+            </div>
+            <div className="mt-3 text-[11px] leading-relaxed" style={{ color: C.ink2 }}>
+              {HOME_BASE.address}<br />
+              <span style={{ color: C.ink3 }}>{HOME_BASE.area}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* リンク2種 */}
+        <div className="mt-4 flex flex-col gap-2">
+          <a
+            href={HOME_BASE.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between gap-2 py-2.5 px-3"
+            style={{ border: `1px solid ${C.line}`, color: C.accent }}
+          >
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold">
+              <MapPin size={12} strokeWidth={1.8} />
+              <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>Google Mapで場所を見る</span>
+            </span>
+            <ExternalLink size={11} strokeWidth={1.8} style={{ color: C.ink3 }} />
+          </a>
+          <a
+            href={HOME_BASE.airbnbUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between gap-2 py-2.5 px-3"
+            style={{ border: `1px solid ${C.line}`, color: C.sub }}
+          >
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold">
+              <Home size={12} strokeWidth={1.8} />
+              <span style={{ fontFamily: FONT_SANS, letterSpacing: '0.05em' }}>宿の概要を見る（Airbnb）</span>
+            </span>
+            <ExternalLink size={11} strokeWidth={1.8} style={{ color: C.ink3 }} />
+          </a>
+        </div>
       </section>
 
       {/* ============ お気に入り一覧（1件以上で表示） ============ */}
